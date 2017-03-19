@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Book {
+    private int id;
     private int marcRecId;
     private String callId;
     private String title;
@@ -16,6 +17,15 @@ public class Book {
     private int disLikeCount;
 
     public Book() {
+    }
+
+    @XmlAttribute(name = "id")
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @XmlAttribute(name = "marcRecId")
@@ -102,7 +112,8 @@ public class Book {
     @Override
     public String toString() {
         return "Book{" +
-                "marcRecId=" + marcRecId +
+                "id=" + id +
+                ", marcRecId=" + marcRecId +
                 ", callId='" + callId + '\'' +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
@@ -113,4 +124,5 @@ public class Book {
                 ", disLikeCount=" + disLikeCount +
                 '}';
     }
+
 }

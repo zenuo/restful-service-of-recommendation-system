@@ -4,28 +4,61 @@ import edu.libsys.data.dao.BookDao;
 import edu.libsys.entity.Book;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 @Path("books")
 @Produces({"application/x-javascript;charset=UTF-8", "application/json;charset=UTF-8"})
 public class BookResource {
 
     //Book数据访问对象
-    BookDao bookDao = new BookDao();
+    private final BookDao bookDao = new BookDao();
 
-    @Path("{id:[0-9]*}")
-    @GET
-    public Book getBookById(@PathParam("id") final int marRecId) {
-        final Book book = bookDao.getBookByMarcRecId(marRecId);
-        return book;
+    //添加
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public int addBook(final Book book) {
+        return bookDao.addBook(book);
     }
 
+    //删除
+    @Path("{id:[0-9]*}")
+    @DELETE
+    @Consumes(MediaType.TEXT_PLAIN)
+    public int deleteBookById(@PathParam("id") final int marRecId) {
+        return bookDao.deleteBook(marRecId);
+    }
+
+    //更新
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public int updateBook(final Book book) {
+        return bookDao.updataBook(book);
+    }
+
+    //获得单个
     @Path("{id:[0-9]*}")
     @GET
-    public int deleteBookById(@PathParam("id") final int marRecId) {
-        int result = 0;
-        if (bookDao.deleteBook(marRecId) == 1) {
-            result = 1;
-        }
-        return result;
+    @Consumes(MediaType.TEXT_PLAIN)
+    public Book getBookById(@PathParam("id") final int marRecId) {
+        return bookDao.getBookByMarcRecId(marRecId);
+    }
+
+    //获得多个
+    @Path("get")
+    @GET
+    @Consumes(MediaType.TEXT_PLAIN)
+    public List<Book> getBookList(@QueryParam("page") final int page, @QueryParam("size") final int size) {
+        //PageHelper.startPage(page, size);
+        return bookDao.getBookList(page, size);
+    }
+
+    //关键词查询
+    @Path("search")
+    @GET
+    @Consumes(MediaType.TEXT_PLAIN)
+    public List<Book> getBookListBySearchTitle(@QueryParam("keyword") final String keyword, @QueryParam("page") final int page, @QueryParam("size") final int size) {
+        //PageHelper.startPage(page, size);
+        return bookDao.getBookListBySearchTitle(keyword);
     }
 }

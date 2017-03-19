@@ -19,11 +19,11 @@ public class PaperDao implements Serializable {
         return paper;
     }
 
-    public List<Paper> getPaperList() {
+    public List<Paper> getPaperList(int page, int size) {
         List<Paper> paperList = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             PaperMapper paperMapper = sqlSession.getMapper(PaperMapper.class);
-            paperList = paperMapper.getPaperList();
+            paperList = paperMapper.getPaperList(page, size);
         } catch (Exception e) {
             e.printStackTrace();
         }

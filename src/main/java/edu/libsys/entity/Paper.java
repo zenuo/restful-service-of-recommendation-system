@@ -1,7 +1,8 @@
 package edu.libsys.entity;
 
 public class Paper {
-    private String id;
+    private int id;
+    private String paperId;
     private String title;
     private String searchWord;
     private String source;
@@ -9,13 +10,12 @@ public class Paper {
     private String intro;
     private int likeCount;
     private int disLikeCount;
-    private int site;
 
     public Paper() {
     }
 
-    public Paper(String id, String title, String searchWord, String source, String url, String intro, int likeCount, int disLikeCount, int site) {
-        this.id = id;
+    public Paper(String paperId, String title, String searchWord, String source, String url, String intro, int likeCount, int disLikeCount, int site) {
+        this.paperId = paperId;
         this.title = title;
         this.searchWord = searchWord;
         this.source = source;
@@ -23,15 +23,22 @@ public class Paper {
         this.intro = intro;
         this.likeCount = likeCount;
         this.disLikeCount = disLikeCount;
-        this.site = site;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public String getPaperId() {
+        return paperId;
+    }
+
+    public void setPaperId(String paperId) {
+        this.paperId = paperId;
     }
 
     public String getTitle() {
@@ -90,18 +97,11 @@ public class Paper {
         this.disLikeCount = disLikeCount;
     }
 
-    public int getSite() {
-        return site;
-    }
-
-    public void setSite(int site) {
-        this.site = site;
-    }
-
     @Override
     public String toString() {
         return "Paper{" +
-                "id='" + id + '\'' +
+                "id=" + id +
+                ", paperId='" + paperId + '\'' +
                 ", title='" + title + '\'' +
                 ", searchWord='" + searchWord + '\'' +
                 ", source='" + source + '\'' +
@@ -109,7 +109,6 @@ public class Paper {
                 ", intro='" + intro + '\'' +
                 ", likeCount=" + likeCount +
                 ", disLikeCount=" + disLikeCount +
-                ", site=" + site +
                 '}';
     }
 }
