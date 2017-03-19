@@ -2,6 +2,7 @@ package edu.libsys.resource;
 
 import edu.libsys.data.dao.BookDao;
 import edu.libsys.entity.Book;
+import edu.libsys.entity.Paper;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -56,7 +57,15 @@ public class BookResource {
     @Path("search")
     @GET
     @Consumes(MediaType.TEXT_PLAIN)
-    public List<Book> getBookListBySearchTitle(@QueryParam("keyword") final String keyword, @QueryParam("page") final int page, @QueryParam("size") final int size) {
+    public List<Book> getBookListBySearchTitle(@QueryParam("keyword") final String keyword) {
         return bookDao.getBookListBySearchTitle(keyword);
+    }
+
+    //根据图书ID获取论文推荐
+    @Path("recommend")
+    @GET
+    @Consumes(MediaType.TEXT_PLAIN)
+    public List<Paper> getRecommendPaperList(@QueryParam("keyword") final int id){
+        return null;
     }
 }
