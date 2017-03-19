@@ -19,18 +19,18 @@ public interface PaperMapper {
     })
 
     @Select("SELECT id, paperId, title, searchWord, source, url, intro, likeCount, disLikeCount FROM PAPER WHERE id=#{id}")
-    Paper getPaperById(final String id);
+    Paper getPaperById(final int id);
 
     @Select("SELECT id ,paperId, title, searchWord, source, url, intro, likeCount, disLikeCount FROM PAPER WHERE id>((#{page}-1)*#{size}) ORDER BY id ASC LIMIT #{size}")
     List<Paper> getPaperList(@Param("page") final int page, @Param("size") final int size);
 
-    @Select("SELECT id ,paperId, title, searchWord, source, url, intro, likeCount, disLikeCount FROM PAPER WHERE title LIKE CONCAT('%',#{keyWord},'%')")
+    @Select("SELECT id ,paperId, title, searchWord, source, url, intro, likeCount, disLikeCount FROM PAPER WHERE title LIKE CONCAT('%',#{keyWord},'%') LIMIT 20")
     List<Paper> getPaperListBySearchTitle(final String keyWord);
 
-    @Select("SELECT id ,paperId, title, searchWord, source, url, intro, likeCount, disLikeCount FROM PAPER WHERE intro LIKE CONCAT('%',#{keyWord},'%')")
+    @Select("SELECT id ,paperId, title, searchWord, source, url, intro, likeCount, disLikeCount FROM PAPER WHERE intro LIKE CONCAT('%',#{keyWord},'%') LIMIT 20")
     List<Paper> getPaperListBySearchIntro(final String keyWord);
 
-    @Select("SELECT id ,paperId, title, searchWord, source, url, intro, likeCount, disLikeCount FROM PAPER WHERE searchWord LIKE CONCAT('%',#{keyWord},'%') LIMIT 50")
+    @Select("SELECT id ,paperId, title, searchWord, source, url, intro, likeCount, disLikeCount FROM PAPER WHERE searchWord LIKE CONCAT('%',#{keyWord},'%') LIMIT 20")
     List<Paper> getPaperListBySearchSearchWord(final String keyWord);
 
     @Select("SELECT COUNT(*) FROM PAPER")
@@ -43,5 +43,5 @@ public interface PaperMapper {
     void updatePaper(final Paper paper);
 
     @Delete("DELETE FROM PAPER WHERE id={id}")
-    void deletePaper(final Paper paper);
+    void deletePaper(final int id);
 }

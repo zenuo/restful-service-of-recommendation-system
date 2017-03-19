@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class PaperDao implements Serializable {
-    public Paper getPaperById(String id) {
+    public Paper getPaperById(int id) {
         Paper paper = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             PaperMapper paperMapper = sqlSession.getMapper(PaperMapper.class);
@@ -89,11 +89,11 @@ public class PaperDao implements Serializable {
         return status;
     }
 
-    public int deletePaper(Paper paper) {
+    public int deletePaper(int id) {
         int status = 0;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             PaperMapper paperMapper = sqlSession.getMapper(PaperMapper.class);
-            paperMapper.deletePaper(paper);
+            paperMapper.deletePaper(id);
             status = 1;
             sqlSession.commit();
         } catch (Exception e) {

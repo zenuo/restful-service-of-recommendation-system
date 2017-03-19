@@ -25,8 +25,11 @@ public interface BookMapper {
     @Select("SELECT COUNT(*) FROM BOOK")
     int countBook();
 
-    @Select("SELECT id, marcRecId, callId, title, author, publisher, pubYear, isbn, likeCount, disLikeCount FROM BOOK WHERE title like CONCAT('%', #{keyWord}, '%') LIMIT 50")
+    @Select("SELECT id, marcRecId, callId, title, author, publisher, pubYear, isbn, likeCount, disLikeCount FROM BOOK WHERE title like CONCAT('%', #{keyWord}, '%') LIMIT 20")
     List<Book> getBookListBySearchTitle(final String keyWord);
+
+    @Select("SELECT id, marcRecId, callId, title, author, publisher, pubYear, isbn, likeCount, disLikeCount FROM BOOK WHERE author like CONCAT('%', #{keyWord}, '%') LIMIT 20")
+    List<Book> getBookListBySearchAuthor(final String keyWord);
 
     @Select("SELECT id, marcRecId, callId, title, author, publisher, pubYear, isbn, likeCount, disLikeCount FROM BOOK WHERE id>((#{page}-1)*#{size}) ORDER BY id ASC LIMIT #{size}")
     List<Book> getBookList(@Param("page") final int page, @Param("size") final int size);

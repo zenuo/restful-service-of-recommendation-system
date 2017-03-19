@@ -25,8 +25,8 @@ public class BookResource {
     @Path("{id:[0-9]*}")
     @DELETE
     @Consumes(MediaType.TEXT_PLAIN)
-    public int deleteBookById(@PathParam("id") final int marRecId) {
-        return bookDao.deleteBook(marRecId);
+    public int deleteBook(@PathParam("id") final int id) {
+        return bookDao.deleteBook(id);
     }
 
     //更新
@@ -40,8 +40,8 @@ public class BookResource {
     @Path("{id:[0-9]*}")
     @GET
     @Consumes(MediaType.TEXT_PLAIN)
-    public Book getBookById(@PathParam("id") final int marRecId) {
-        return bookDao.getBookByMarcRecId(marRecId);
+    public Book getBookById(@PathParam("id") final int id) {
+        return bookDao.getBookByMarcRecId(id);
     }
 
     //获得多个
@@ -49,7 +49,6 @@ public class BookResource {
     @GET
     @Consumes(MediaType.TEXT_PLAIN)
     public List<Book> getBookList(@QueryParam("page") final int page, @QueryParam("size") final int size) {
-        //PageHelper.startPage(page, size);
         return bookDao.getBookList(page, size);
     }
 
@@ -58,7 +57,6 @@ public class BookResource {
     @GET
     @Consumes(MediaType.TEXT_PLAIN)
     public List<Book> getBookListBySearchTitle(@QueryParam("keyword") final String keyword, @QueryParam("page") final int page, @QueryParam("size") final int size) {
-        //PageHelper.startPage(page, size);
         return bookDao.getBookListBySearchTitle(keyword);
     }
 }

@@ -80,6 +80,17 @@ public class BookDao implements Serializable {
         return bookList;
     }
 
+    public List<Book> getBookListBySearchAuthor(String keyWord) {
+        List<Book> bookList = null;
+        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+            BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+            bookList = bookMapper.getBookListBySearchAuthor(keyWord);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bookList;
+    }
+
     public List<Book> getBookList(int page, int size) {
         List<Book> bookList = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
