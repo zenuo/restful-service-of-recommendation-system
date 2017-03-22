@@ -5,6 +5,7 @@ import edu.libsys.entity.Paper;
 import org.apache.ibatis.session.SqlSession;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 
 public class PaperDao implements Serializable {
@@ -17,6 +18,19 @@ public class PaperDao implements Serializable {
             e.printStackTrace();
         }
         return paper;
+    }
+
+    public List<Paper> getPaperListByIdList(List<Integer> integerList) {
+        List<Paper> paperList = new LinkedList<Paper>();
+        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+            PaperMapper paperMapper = sqlSession.getMapper(PaperMapper.class);
+            for (int i = 0; i < integerList.size(); i++) {
+                paperList.add(paperMapper.getPaperById(integerList.get(i)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return paperList;
     }
 
     public List<Paper> getPaperList(int page, int size) {

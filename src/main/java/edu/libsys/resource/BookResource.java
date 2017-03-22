@@ -1,6 +1,8 @@
 package edu.libsys.resource;
 
 import edu.libsys.data.dao.BookDao;
+import edu.libsys.data.dao.PaperBookRelationshipDao;
+import edu.libsys.data.dao.PaperDao;
 import edu.libsys.entity.Book;
 import edu.libsys.entity.Paper;
 
@@ -34,7 +36,7 @@ public class BookResource {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public int updateBook(final Book book) {
-        return bookDao.updataBook(book);
+        return bookDao.updateBook(book);
     }
 
     //获得单个
@@ -42,7 +44,7 @@ public class BookResource {
     @GET
     @Consumes(MediaType.TEXT_PLAIN)
     public Book getBookById(@PathParam("id") final int id) {
-        return bookDao.getBookByMarcRecId(id);
+        return bookDao.getBookById(id);
     }
 
     //获得多个
@@ -66,6 +68,8 @@ public class BookResource {
     @GET
     @Consumes(MediaType.TEXT_PLAIN)
     public List<Paper> getRecommendPaperList(@QueryParam("keyword") final int id){
-        return null;
+        PaperBookRelationshipDao paperBookRelationshipDao = new PaperBookRelationshipDao();
+        PaperDao paperDao = new PaperDao();
+        return paperDao.getPaperListByIdList(paperBookRelationshipDao.getRecommendPaperIdListByBookId(id));
     }
 }

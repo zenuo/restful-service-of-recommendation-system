@@ -1,6 +1,5 @@
 package edu.libsys;
 
-import org.apache.log4j.PropertyConfigurator;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -13,7 +12,7 @@ import java.net.URI;
  */
 public class Main {
     // Base URI the Grizzly HTTP server will listen on
-    public static final String BASE_URI = "http://localhost:8001/";
+    public static String BASE_URI = null;
 
     /**
      * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
@@ -36,8 +35,12 @@ public class Main {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-        PropertyConfigurator.configure("target/classes/edu/libsys/conf/config.properties");
-        org.apache.ibatis.logging.LogFactory.useLog4JLogging();
+        //检测参数
+        if (args.length != 2){
+            System.err.println("Useage:\n" + "java -jar restful-service-1.0.jar IP PORT" );
+            System.exit(1);
+        }
+        BASE_URI =  "http://" + args[0] + ":" + args[1];
         final HttpServer server = startServer();
         System.out.println(String.format("Jersey app started with WADL available at "
                 + "%sapplication.wadl\nHit Enter to stop it...", BASE_URI));

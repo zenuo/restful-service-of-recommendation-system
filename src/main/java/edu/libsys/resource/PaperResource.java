@@ -1,5 +1,8 @@
 package edu.libsys.resource;
 
+import edu.libsys.data.dao.BookDao;
+import edu.libsys.data.dao.PaperBookRelationshipDao;
+import edu.libsys.entity.Book;
 import edu.libsys.entity.Paper;
 import edu.libsys.data.dao.PaperDao;
 
@@ -26,7 +29,7 @@ public class PaperResource {
     @Path("{id:[0-9]*}")
     @DELETE
     @Consumes(MediaType.TEXT_PLAIN)
-    private int deletePaper(@PathParam("id") final int id) {
+    public int deletePaper(@PathParam("id") final int id) {
         return paperDao.deletePaper(id);
     }
 
@@ -63,5 +66,14 @@ public class PaperResource {
         paperList.addAll(paperDao.getPaperListBySearchIntro(keyword));
         paperList.addAll(paperDao.getPaperListBySearchSearchWord(keyword));
         return paperList;
+    }
+
+    @Path("recommend")
+    @GET
+    @Consumes(MediaType.TEXT_PLAIN)
+    public List<Book> getRecommendBookListById(@QueryParam("id") final int id) {
+        PaperBookRelationshipDao paperBookRelationshipDao = new PaperBookRelationshipDao();
+        BookDao bookDao = new BookDao();
+        return bookDao.getBookListByIdList(paperBookRelationshipDao.getRecommendBookIdListByPaperId(id));
     }
 }

@@ -22,14 +22,3 @@
 |获得多个|GET /papers/get?page={page}&size={size}|GET /papers/get?page=1&size=10|
 |关键词查询|GET /papers/search?keyword={keyword}|GET /papers/search?keyword=马克思|
 |根据论文ID获取图书推荐|GET /papers/recommend?id={id}|GET /papers/recommend?id=1|
-
-## 3.收藏部分
-|功能|资源地址|示例|
-| --- | --- | --- |
-|添加|PUT /collections?userid={userid}|PUT /collections?userid=1|
-|删除|DELETE /collections?userid={userid}&collectionid={collectionid}|DELETE /collections?userid=1&collectionid=1|
-
-## 4.行为部分
-|功能|资源地址|示例|
-| --- | --- | --- |
-|反馈|POST /behaviors|POST /behaviors|

@@ -1,14 +1,15 @@
 package edu.libsys.data.dao;
 
-import edu.libsys.entity.Book;
 import edu.libsys.data.mapper.BookMapper;
+import edu.libsys.entity.Book;
 import org.apache.ibatis.session.SqlSession;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 
 public class BookDao implements Serializable {
-    public Book getBookByMarcRecId(int id) {
+    public Book getBookById(int id) {
         Book book = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
@@ -17,6 +18,19 @@ public class BookDao implements Serializable {
             e.printStackTrace();
         }
         return book;
+    }
+
+    public List<Book> getBookListByIdList(List<Integer> integerList) {
+        List<Book> bookList = new LinkedList<Book>();
+        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+            BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+            for (int i = 0; i < integerList.size(); i++) {
+                bookList.add(bookMapper.getBookById(integerList.get(i)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bookList;
     }
 
     public int addBook(Book book) {
@@ -32,7 +46,7 @@ public class BookDao implements Serializable {
         return status;
     }
 
-    public int updataBook(Book book) {
+    public int updateBook(Book book) {
         int status = 0;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);

@@ -13,6 +13,8 @@ public class Book {
     private String publisher;
     private String pubYear;
     private String isbn;
+
+    private String imageUrl;
     private int likeCount;
     private int disLikeCount;
 
@@ -109,6 +111,15 @@ public class Book {
         this.disLikeCount = disLikeCount;
     }
 
+    @XmlAttribute(name = "imageUrl")
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -120,9 +131,9 @@ public class Book {
                 ", publisher='" + publisher + '\'' +
                 ", pubYear='" + pubYear + '\'' +
                 ", isbn='" + isbn + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
                 ", likeCount=" + likeCount +
                 ", disLikeCount=" + disLikeCount +
                 '}';
     }
-
 }
