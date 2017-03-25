@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class UserDao implements Serializable {
-    public User getUserById(int id) {
+    public User getUserById(final int id) {
         User user = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
@@ -30,7 +30,7 @@ public class UserDao implements Serializable {
         return userList;
     }
 
-    public List<User> getUserListBySearchName(String keyWord) {
+    public List<User> getUserListBySearchName(final String keyWord) {
         List<User> userList = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
@@ -41,7 +41,7 @@ public class UserDao implements Serializable {
         return userList;
     }
 
-    public List<User> getUserListByType(int type) {
+    public List<User> getUserListByType(final int type) {
         List<User> userList = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
@@ -63,7 +63,7 @@ public class UserDao implements Serializable {
         return count;
     }
 
-    public String getPasswdByUser(String name) {
+    public String getPasswdByUser(final String name) {
         String passwd = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
@@ -74,7 +74,7 @@ public class UserDao implements Serializable {
         return passwd;
     }
 
-    public int addUser(User user) {
+    public int addUser(final User user) {
         int status = 0;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
@@ -87,7 +87,7 @@ public class UserDao implements Serializable {
         return status;
     }
 
-    public int updateUser(User user) {
+    public int updateUser(final User user) {
         int status = 0;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
@@ -100,7 +100,7 @@ public class UserDao implements Serializable {
         return status;
     }
 
-    public int deleteUser(User user) {
+    public int deleteUser(final User user) {
         int status = 0;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             UserMapper userMapper = sqlSession.getMapper(UserMapper.class);

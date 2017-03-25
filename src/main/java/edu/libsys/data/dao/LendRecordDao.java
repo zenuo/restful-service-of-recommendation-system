@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class LendRecordDao implements Serializable {
-    public List<LendRecord> getLendRecordListByMarcRecId(int marcRecId) {
+    public List<LendRecord> getLendRecordListByMarcRecId(final int marcRecId) {
         List<LendRecord> lendRecordList = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             LendRecordMapper lendRecordMapper = sqlSession.getMapper(LendRecordMapper.class);
@@ -19,7 +19,7 @@ public class LendRecordDao implements Serializable {
         return lendRecordList;
     }
 
-    public List<LendRecord> getLendRecordListByCertId(String certId) {
+    public List<LendRecord> getLendRecordListByCertId(final String certId) {
         List<LendRecord> lendRecordList = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             LendRecordMapper lendRecordMapper = sqlSession.getMapper(LendRecordMapper.class);
@@ -52,7 +52,7 @@ public class LendRecordDao implements Serializable {
         return count;
     }
 
-    public int addLendRecord(LendRecord lendRecord) {
+    public int addLendRecord(final LendRecord lendRecord) {
         int status = 0;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             LendRecordMapper lendRecordMapper = sqlSession.getMapper(LendRecordMapper.class);

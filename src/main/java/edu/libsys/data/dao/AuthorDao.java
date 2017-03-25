@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class AuthorDao implements Serializable {
-    public Author getUserById(int id) {
+    public Author getUserById(final int id) {
         Author author = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             AuthorMapper authorMapper = sqlSession.getMapper(AuthorMapper.class);
@@ -19,7 +19,7 @@ public class AuthorDao implements Serializable {
         return author;
     }
 
-    public int addAuthor(Author author) {
+    public int addAuthor(final Author author) {
         int status = 0;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             AuthorMapper authorMapper = sqlSession.getMapper(AuthorMapper.class);
@@ -33,7 +33,7 @@ public class AuthorDao implements Serializable {
         return status;
     }
 
-    public int updateAuthor(Author author) {
+    public int updateAuthor(final Author author) {
         int status = 0;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             AuthorMapper authorMapper = sqlSession.getMapper(AuthorMapper.class);
@@ -46,7 +46,7 @@ public class AuthorDao implements Serializable {
         return status;
     }
 
-    public int deleteAuthor(Author author) {
+    public int deleteAuthor(final Author author) {
         int status = 0;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             AuthorMapper authorMapper = sqlSession.getMapper(AuthorMapper.class);
@@ -59,7 +59,7 @@ public class AuthorDao implements Serializable {
         return status;
     }
 
-    public int likeCountPlusOne(int id) {
+    public int likeCountPlusOne(final int id) {
         int status = 0;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             AuthorMapper authorMapper = sqlSession.getMapper(AuthorMapper.class);
@@ -72,7 +72,7 @@ public class AuthorDao implements Serializable {
         return status;
     }
 
-    public int disLikeCountPlusOne(int id) {
+    public int disLikeCountPlusOne(final int id) {
         int status = 0;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             AuthorMapper authorMapper = sqlSession.getMapper(AuthorMapper.class);
@@ -106,7 +106,7 @@ public class AuthorDao implements Serializable {
         return count;
     }
 
-    public List<Author> getAuthorListBySearchName(String keyWord) {
+    public List<Author> getAuthorListBySearchName(final String keyWord) {
         List<Author> authorList = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             AuthorMapper authorMapper = sqlSession.getMapper(AuthorMapper.class);

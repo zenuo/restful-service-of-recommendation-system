@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class BookDao implements Serializable {
-    public Book getBookById(int id) {
+    public Book getBookById(final int id) {
         Book book = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
@@ -20,12 +20,12 @@ public class BookDao implements Serializable {
         return book;
     }
 
-    public List<Book> getBookListByIdList(List<Integer> integerList) {
-        List<Book> bookList = new LinkedList<Book>();
+    public List<Book> getBookListByIdList(final List<Integer> integerList) {
+        List<Book> bookList = new LinkedList<>();
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
-            for (int i = 0; i < integerList.size(); i++) {
-                bookList.add(bookMapper.getBookById(integerList.get(i)));
+            for (Integer anIntegerList : integerList) {
+                bookList.add(bookMapper.getBookById(anIntegerList));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -33,7 +33,7 @@ public class BookDao implements Serializable {
         return bookList;
     }
 
-    public int addBook(Book book) {
+    public int addBook(final Book book) {
         int status = 0;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
@@ -46,7 +46,7 @@ public class BookDao implements Serializable {
         return status;
     }
 
-    public int updateBook(Book book) {
+    public int updateBook(final Book book) {
         int status = 0;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
@@ -59,7 +59,7 @@ public class BookDao implements Serializable {
         return status;
     }
 
-    public int deleteBook(int marcRecId) {
+    public int deleteBook(final int marcRecId) {
         int status = 0;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
@@ -83,7 +83,7 @@ public class BookDao implements Serializable {
         return count;
     }
 
-    public List<Book> getBookListBySearchTitle(String keyWord) {
+    public List<Book> getBookListBySearchTitle(final String keyWord) {
         List<Book> bookList = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
@@ -94,7 +94,7 @@ public class BookDao implements Serializable {
         return bookList;
     }
 
-    public List<Book> getBookListBySearchAuthor(String keyWord) {
+    public List<Book> getBookListBySearchAuthor(final String keyWord) {
         List<Book> bookList = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
@@ -105,7 +105,7 @@ public class BookDao implements Serializable {
         return bookList;
     }
 
-    public List<Book> getBookList(int page, int size) {
+    public List<Book> getBookList(final int page, final int size) {
         List<Book> bookList = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
@@ -116,7 +116,7 @@ public class BookDao implements Serializable {
         return bookList;
     }
 
-    public int likeCountPlusOne(int id) {
+    public int likeCountPlusOne(final int id) {
         int status = 0;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
@@ -129,7 +129,7 @@ public class BookDao implements Serializable {
         return status;
     }
 
-    public int disLikeCountPlusOne(int id) {
+    public int disLikeCountPlusOne(final int id) {
         int status = 0;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);

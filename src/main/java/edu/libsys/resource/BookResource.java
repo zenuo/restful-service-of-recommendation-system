@@ -1,10 +1,7 @@
 package edu.libsys.resource;
 
 import edu.libsys.data.dao.BookDao;
-import edu.libsys.data.dao.PaperBookRelationshipDao;
-import edu.libsys.data.dao.PaperDao;
 import edu.libsys.entity.Book;
-import edu.libsys.entity.Paper;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -63,13 +60,4 @@ public class BookResource {
         return bookDao.getBookListBySearchTitle(keyword);
     }
 
-    //根据图书ID获取论文推荐
-    @Path("recommend")
-    @GET
-    @Consumes(MediaType.TEXT_PLAIN)
-    public List<Paper> getRecommendPaperList(@QueryParam("keyword") final int id){
-        PaperBookRelationshipDao paperBookRelationshipDao = new PaperBookRelationshipDao();
-        PaperDao paperDao = new PaperDao();
-        return paperDao.getPaperListByIdList(paperBookRelationshipDao.getRecommendPaperIdListByBookId(id));
-    }
 }

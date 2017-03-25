@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class PaperDao implements Serializable {
-    public Paper getPaperById(int id) {
+    public Paper getPaperById(final int id) {
         Paper paper = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             PaperMapper paperMapper = sqlSession.getMapper(PaperMapper.class);
@@ -20,12 +20,12 @@ public class PaperDao implements Serializable {
         return paper;
     }
 
-    public List<Paper> getPaperListByIdList(List<Integer> integerList) {
-        List<Paper> paperList = new LinkedList<Paper>();
+    public List<Paper> getPaperListByIdList(final List<Integer> integerList) {
+        List<Paper> paperList = new LinkedList<>();
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             PaperMapper paperMapper = sqlSession.getMapper(PaperMapper.class);
-            for (int i = 0; i < integerList.size(); i++) {
-                paperList.add(paperMapper.getPaperById(integerList.get(i)));
+            for (Integer anIntegerList : integerList) {
+                paperList.add(paperMapper.getPaperById(anIntegerList));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -33,7 +33,7 @@ public class PaperDao implements Serializable {
         return paperList;
     }
 
-    public List<Paper> getPaperList(int page, int size) {
+    public List<Paper> getPaperList(final int page, int size) {
         List<Paper> paperList = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             PaperMapper paperMapper = sqlSession.getMapper(PaperMapper.class);
@@ -44,7 +44,7 @@ public class PaperDao implements Serializable {
         return paperList;
     }
 
-    public List<Paper> getPaperListBySearchTitle(String keyWord) {
+    public List<Paper> getPaperListBySearchTitle(final String keyWord) {
         List<Paper> paperList = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             PaperMapper paperMapper = sqlSession.getMapper(PaperMapper.class);
@@ -55,7 +55,7 @@ public class PaperDao implements Serializable {
         return paperList;
     }
 
-    public List<Paper> getPaperListBySearchIntro(String keyWord) {
+    public List<Paper> getPaperListBySearchIntro(final String keyWord) {
         List<Paper> paperList = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             PaperMapper paperMapper = sqlSession.getMapper(PaperMapper.class);
@@ -66,7 +66,7 @@ public class PaperDao implements Serializable {
         return paperList;
     }
 
-    public List<Paper> getPaperListBySearchSearchWord(String keyWord) {
+    public List<Paper> getPaperListBySearchSearchWord(final String keyWord) {
         List<Paper> paperList = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             PaperMapper paperMapper = sqlSession.getMapper(PaperMapper.class);
@@ -77,7 +77,7 @@ public class PaperDao implements Serializable {
         return paperList;
     }
 
-    public int addPaper(Paper paper) {
+    public int addPaper(final Paper paper) {
         int status = 0;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             PaperMapper paperMapper = sqlSession.getMapper(PaperMapper.class);
@@ -90,7 +90,7 @@ public class PaperDao implements Serializable {
         return status;
     }
 
-    public int updatePaper(Paper paper) {
+    public int updatePaper(final Paper paper) {
         int status = 0;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             PaperMapper paperMapper = sqlSession.getMapper(PaperMapper.class);
@@ -103,7 +103,7 @@ public class PaperDao implements Serializable {
         return status;
     }
 
-    public int deletePaper(int id) {
+    public int deletePaper(final int id) {
         int status = 0;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             PaperMapper paperMapper = sqlSession.getMapper(PaperMapper.class);

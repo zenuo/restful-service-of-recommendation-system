@@ -1,10 +1,7 @@
 package edu.libsys.resource;
 
-import edu.libsys.data.dao.BookDao;
-import edu.libsys.data.dao.PaperBookRelationshipDao;
-import edu.libsys.entity.Book;
-import edu.libsys.entity.Paper;
 import edu.libsys.data.dao.PaperDao;
+import edu.libsys.entity.Paper;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -63,17 +60,9 @@ public class PaperResource {
     public List<Paper> getPaperListBySearchTitle(@QueryParam("keyword") final String keyword, @QueryParam("page") final int page, @QueryParam("size") final int size) {
         List<Paper> paperList = new LinkedList<>();
         paperList.addAll(paperDao.getPaperListBySearchTitle(keyword));
-        paperList.addAll(paperDao.getPaperListBySearchIntro(keyword));
-        paperList.addAll(paperDao.getPaperListBySearchSearchWord(keyword));
+        //较费时间，暂时关闭
+        //paperList.addAll(paperDao.getPaperListBySearchIntro(keyword));
+        //paperList.addAll(paperDao.getPaperListBySearchSearchWord(keyword));
         return paperList;
-    }
-
-    @Path("recommend")
-    @GET
-    @Consumes(MediaType.TEXT_PLAIN)
-    public List<Book> getRecommendBookListById(@QueryParam("id") final int id) {
-        PaperBookRelationshipDao paperBookRelationshipDao = new PaperBookRelationshipDao();
-        BookDao bookDao = new BookDao();
-        return bookDao.getBookListByIdList(paperBookRelationshipDao.getRecommendBookIdListByPaperId(id));
     }
 }

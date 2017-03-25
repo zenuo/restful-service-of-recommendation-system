@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class ItemDao implements Serializable {
-    public Item getItemBymarcRecId(int marcRecId) {
+    public Item getItemBymarcRecId(final int marcRecId) {
         Item item = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             ItemMapper itemMapper = sqlSession.getMapper(ItemMapper.class);
@@ -19,7 +19,7 @@ public class ItemDao implements Serializable {
         return item;
     }
 
-    public int addItem(Item item) {
+    public int addItem(final Item item) {
         int status = 0;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             ItemMapper itemMapper = sqlSession.getMapper(ItemMapper.class);
@@ -32,7 +32,7 @@ public class ItemDao implements Serializable {
         return status;
     }
 
-    public int lendCountPlusOne(Item item) {
+    public int lendCountPlusOne(final Item item) {
         int status = 0;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             ItemMapper itemMapper = sqlSession.getMapper(ItemMapper.class);

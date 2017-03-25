@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class BehaviorDao implements Serializable {
-    public Behavior getBehaviorById(int id) {
+    public Behavior getBehaviorById(final int id) {
         Behavior behavior = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             BehaviorMapper behaviorMapper = sqlSession.getMapper(BehaviorMapper.class);
@@ -19,7 +19,7 @@ public class BehaviorDao implements Serializable {
         return behavior;
     }
 
-    public int addBehavior(Behavior behavior) {
+    public int addBehavior(final Behavior behavior) {
         int status = 0;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             BehaviorMapper behaviorMapper = sqlSession.getMapper(BehaviorMapper.class);
@@ -42,7 +42,7 @@ public class BehaviorDao implements Serializable {
         return behaviorList;
     }
 
-    public List<Behavior> getBehaviorListByUserId(int userId) {
+    public List<Behavior> getBehaviorListByUserId(final int userId) {
         List<Behavior> behaviorList = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             BehaviorMapper behaviorMapper = sqlSession.getMapper(BehaviorMapper.class);
@@ -53,7 +53,7 @@ public class BehaviorDao implements Serializable {
         return behaviorList;
     }
 
-    List<Behavior> getBehaviorListByItemId(int itemId) {
+    List<Behavior> getBehaviorListByItemId(final int itemId) {
         List<Behavior> behaviorList = null;
         try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
             BehaviorMapper behaviorMapper = sqlSession.getMapper(BehaviorMapper.class);
