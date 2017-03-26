@@ -48,6 +48,7 @@ public class PaperResource {
     //获得多个
     @Path("get")
     @GET
+    @Produces({"application/x-javascript;charset=UTF-8", "application/json;charset=UTF-8"})
     public List<Paper> getPaperList(@QueryParam("page") final int page, @QueryParam("size") final int size) {
         return paperDao.getPaperList(page, size);
     }
@@ -55,6 +56,7 @@ public class PaperResource {
     //关键词查询
     @Path("search")
     @GET
+    @Produces({"application/x-javascript;charset=UTF-8", "application/json;charset=UTF-8"})
     public List<Paper> getPaperListBySearchTitle(@QueryParam("keyword") final String keyword, @QueryParam("page") final int page, @QueryParam("size") final int size) {
         List<Paper> paperList = new LinkedList<>();
         paperList.addAll(paperDao.getPaperListBySearchTitle(keyword));

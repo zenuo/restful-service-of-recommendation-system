@@ -2,29 +2,50 @@ package edu.libsys.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement
+@XmlRootElement(name = "Book")
 public class Book {
+    @JsonProperty("id")
     private int id;
+    @JsonProperty("marcRecId")
     private int marcRecId;
+    @JsonProperty("callId")
     private String callId;
+    @JsonProperty("title")
     private String title;
+    @JsonProperty("author")
     private String author;
+    @JsonProperty("publisher")
     private String publisher;
+    @JsonProperty("pubYear")
     private String pubYear;
+    @JsonProperty("isbn")
     private String isbn;
-
+    @JsonProperty("imageUrl")
     private String imageUrl;
+    @JsonProperty("likeCount")
     private int likeCount;
+    @JsonProperty("disLikeCount")
     private int disLikeCount;
 
     public Book() {
     }
 
-    @JsonProperty("id")
+    public Book(int id, int marcRecId, String callId, String title, String author, String publisher, String pubYear, String isbn, String imageUrl, int likeCount, int disLikeCount) {
+        this.id = id;
+        this.marcRecId = marcRecId;
+        this.callId = callId;
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.pubYear = pubYear;
+        this.isbn = isbn;
+        this.imageUrl = imageUrl;
+        this.likeCount = likeCount;
+        this.disLikeCount = disLikeCount;
+    }
+
     public int getId() {
         return id;
     }
@@ -33,7 +54,6 @@ public class Book {
         this.id = id;
     }
 
-    @XmlAttribute(name = "marcRecId")
     public int getMarcRecId() {
         return marcRecId;
     }
@@ -42,7 +62,6 @@ public class Book {
         this.marcRecId = marcRecId;
     }
 
-    @XmlAttribute(name = "callId")
     public String getCallId() {
         return callId;
     }
@@ -51,7 +70,6 @@ public class Book {
         this.callId = callId;
     }
 
-    @XmlAttribute(name = "title")
     public String getTitle() {
         return title;
     }
@@ -60,7 +78,6 @@ public class Book {
         this.title = title;
     }
 
-    @XmlAttribute(name = "author")
     public String getAuthor() {
         return author;
     }
@@ -69,7 +86,6 @@ public class Book {
         this.author = author;
     }
 
-    @XmlAttribute(name = "publisher")
     public String getPublisher() {
         return publisher;
     }
@@ -78,7 +94,6 @@ public class Book {
         this.publisher = publisher;
     }
 
-    @XmlAttribute(name = "pubYear")
     public String getPubYear() {
         return pubYear;
     }
@@ -87,7 +102,6 @@ public class Book {
         this.pubYear = pubYear;
     }
 
-    @XmlAttribute(name = "isbn")
     public String getIsbn() {
         return isbn;
     }
@@ -96,7 +110,6 @@ public class Book {
         this.isbn = isbn;
     }
 
-    @XmlAttribute(name = "likeCount")
     public int getLikeCount() {
         return likeCount;
     }
@@ -105,7 +118,6 @@ public class Book {
         this.likeCount = likeCount;
     }
 
-    @XmlAttribute(name = "disLikeCount")
     public int getDisLikeCount() {
         return disLikeCount;
     }
@@ -114,7 +126,6 @@ public class Book {
         this.disLikeCount = disLikeCount;
     }
 
-    @XmlAttribute(name = "imageUrl")
     public String getImageUrl() {
         return imageUrl;
     }

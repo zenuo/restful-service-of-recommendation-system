@@ -1,24 +1,35 @@
 package edu.libsys.entity;
 
-import javax.xml.bind.annotation.XmlAttribute;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+@XmlRootElement(name = "Paper")
 public class Paper {
+    @JsonProperty("id")
     private int id;
+    @JsonProperty("paperId")
     private String paperId;
+    @JsonProperty("title")
     private String title;
+    @JsonProperty("searchWord")
     private String searchWord;
+    @JsonProperty("source")
     private String source;
+    @JsonProperty("url")
     private String url;
+    @JsonProperty("intro")
     private String intro;
+    @JsonProperty("likeCount")
     private int likeCount;
+    @JsonProperty("disLikeCount")
     private int disLikeCount;
 
     public Paper() {
     }
 
-    public Paper(String paperId, String title, String searchWord, String source, String url, String intro, int likeCount, int disLikeCount, int site) {
+    public Paper(int id, String paperId, String title, String searchWord, String source, String url, String intro, int likeCount, int disLikeCount) {
+        this.id = id;
         this.paperId = paperId;
         this.title = title;
         this.searchWord = searchWord;
@@ -29,7 +40,7 @@ public class Paper {
         this.disLikeCount = disLikeCount;
     }
 
-    @XmlAttribute(name = "id")
+
     public int getId() {
         return id;
     }
@@ -38,7 +49,7 @@ public class Paper {
         this.id = id;
     }
 
-    @XmlAttribute(name = "paperId")
+
     public String getPaperId() {
         return paperId;
     }
@@ -47,7 +58,7 @@ public class Paper {
         this.paperId = paperId;
     }
 
-    @XmlAttribute(name = "title")
+
     public String getTitle() {
         return title;
     }
@@ -56,7 +67,6 @@ public class Paper {
         this.title = title;
     }
 
-    @XmlAttribute(name = "searchWord")
     public String getSearchWord() {
         return searchWord;
     }
@@ -65,7 +75,6 @@ public class Paper {
         this.searchWord = searchWord;
     }
 
-    @XmlAttribute(name = "source")
     public String getSource() {
         return source;
     }
@@ -74,7 +83,6 @@ public class Paper {
         this.source = source;
     }
 
-    @XmlAttribute(name = "url")
     public String getUrl() {
         return url;
     }
@@ -83,7 +91,6 @@ public class Paper {
         this.url = url;
     }
 
-    @XmlAttribute(name = "intro")
     public String getIntro() {
         return intro;
     }
@@ -92,7 +99,6 @@ public class Paper {
         this.intro = intro;
     }
 
-    @XmlAttribute(name = "likeCount")
     public int getLikeCount() {
         return likeCount;
     }
@@ -101,7 +107,6 @@ public class Paper {
         this.likeCount = likeCount;
     }
 
-    @XmlAttribute(name = "disLikeCount")
     public int getDisLikeCount() {
         return disLikeCount;
     }
