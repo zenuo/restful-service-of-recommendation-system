@@ -7,7 +7,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
-@XmlType(propOrder = {"id", "marcRecId", "callId", "title", "author", "publisher", "pubYear", "isbn"})
 public class Book {
     private int id;
     private int marcRecId;
