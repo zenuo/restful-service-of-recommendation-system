@@ -35,7 +35,7 @@
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
-            <artifactId>jersey-media-moxy</artifactId>
+            <artifactId>jersey-media-json-jackson</artifactId>
             <version>2.25.1</version>
         </dependency>
     </dependencies>
@@ -46,6 +46,16 @@
     </properties>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/java/resources</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+                <targetPath>resources</targetPath>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -1,9 +1,13 @@
 package edu.libsys.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
+@XmlType(propOrder = {"id", "marcRecId", "callId", "title", "author", "publisher", "pubYear", "isbn"})
 public class Book {
     private int id;
     private int marcRecId;
@@ -21,7 +25,7 @@ public class Book {
     public Book() {
     }
 
-    @XmlAttribute(name = "id")
+    @JsonProperty("id")
     public int getId() {
         return id;
     }

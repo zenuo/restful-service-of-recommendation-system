@@ -1,14 +1,18 @@
-package edu.libsys.resource;
+package edu.libsys.service;
 
 import edu.libsys.data.dao.*;
 import edu.libsys.entity.Book;
 import edu.libsys.entity.Paper;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.ext.Provider;
 import java.util.List;
 
 @Path("recommend")
+@Provider
 @Produces({"application/x-javascript;charset=UTF-8", "application/json;charset=UTF-8"})
 public class RecommendResource {
 
@@ -20,7 +24,6 @@ public class RecommendResource {
     //获取图书资源
     @Path("books")
     @GET
-    @Consumes(MediaType.TEXT_PLAIN)
     public List<Book> getRecommendBookList(@QueryParam("id") final int id, @QueryParam("type") final String type) {
         List<Book> bookList = null;
         if (type.equals("paper")) {
@@ -38,7 +41,6 @@ public class RecommendResource {
     //获取论文资源
     @Path("papers")
     @GET
-    @Consumes(MediaType.TEXT_PLAIN)
     public List<Paper> getRecommendPaperList(@QueryParam("id") final int id, @QueryParam("type") final String type) {
         List<Paper> paperList = null;
         if (type.equals("paper")) {

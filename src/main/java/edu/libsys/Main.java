@@ -21,7 +21,7 @@ public class Main {
      */
     public static HttpServer startServer() {
         // create a resource config that scans for JAX-RS resources and providers
-        final ResourceConfig rc = new ResourceConfig().packages("edu.libsys.resource");
+        final ResourceConfig rc = new ResourceConfig().packages("edu.libsys.service");
 
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI
@@ -43,7 +43,7 @@ public class Main {
         BASE_URI =  "http://" + args[0] + ":" + args[1];
         final HttpServer server = startServer();
         System.out.println(String.format("Jersey app started with WADL available at "
-                + "%sapplication.wadl\nHit Enter to stop it...", BASE_URI));
+                + "%s/application.wadl\nHit Enter to stop it...", BASE_URI));
         System.in.read();
         server.shutdownNow();
     }

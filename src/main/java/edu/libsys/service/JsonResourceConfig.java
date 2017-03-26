@@ -1,4 +1,4 @@
-package edu.libsys.resource;
+package edu.libsys.service;
 
 import org.glassfish.jersey.CommonProperties;
 import org.glassfish.jersey.server.ResourceConfig;

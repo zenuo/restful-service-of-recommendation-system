@@ -1,13 +1,15 @@
-package edu.libsys.resource;
+package edu.libsys.service;
 
 import edu.libsys.data.dao.BookDao;
 import edu.libsys.entity.Book;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.ext.Provider;
 import java.util.List;
 
 @Path("books")
+@Provider
 @Produces({"application/x-javascript;charset=UTF-8", "application/json;charset=UTF-8"})
 public class BookResource {
 
@@ -24,7 +26,6 @@ public class BookResource {
     //删除
     @Path("{id:[0-9]*}")
     @DELETE
-    @Consumes(MediaType.TEXT_PLAIN)
     public int deleteBook(@PathParam("id") final int id) {
         return bookDao.deleteBook(id);
     }
@@ -39,7 +40,6 @@ public class BookResource {
     //获得单个
     @Path("{id:[0-9]*}")
     @GET
-    @Consumes(MediaType.TEXT_PLAIN)
     public Book getBookById(@PathParam("id") final int id) {
         return bookDao.getBookById(id);
     }
@@ -47,7 +47,6 @@ public class BookResource {
     //获得多个
     @Path("get")
     @GET
-    @Consumes(MediaType.TEXT_PLAIN)
     public List<Book> getBookList(@QueryParam("page") final int page, @QueryParam("size") final int size) {
         return bookDao.getBookList(page, size);
     }
@@ -55,7 +54,6 @@ public class BookResource {
     //关键词查询
     @Path("search")
     @GET
-    @Consumes(MediaType.TEXT_PLAIN)
     public List<Book> getBookListBySearchTitle(@QueryParam("keyword") final String keyword) {
         return bookDao.getBookListBySearchTitle(keyword);
     }

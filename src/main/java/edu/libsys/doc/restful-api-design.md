@@ -26,5 +26,5 @@
 | --- | --- | --- |
 |根据图书ID获取论文推荐|GET /recommend/papers?id={id}&type=paper|GET /recommend/papers?id=1&type=paper|
 |根据论文ID获取论文推荐|GET /recommend/papers?id={id}&type=book|GET /recommend/papers?id=1&type=book|
-|根据图书ID获取图书推荐|GET /recommend/books?id={id}&type=paper|GET /recommend/books?id=1&type=paper|
-|根据论文ID获取图书推荐|GET /recommend/books?id={id}&type=book|GET /recommend/books?id=1&type=book|
+|根据图书ID获取图书推荐|GET /recommend/books?id={id}&type=book|GET /recommend/books?id=1&type=book|
+|根据论文ID获取图书推荐|GET /recommend/books?id={id}&type=paper|GET /recommend/books?id=1&type=paper|

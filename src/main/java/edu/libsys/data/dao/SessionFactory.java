@@ -15,7 +15,7 @@ public class SessionFactory implements Serializable {
 
     //build sqlSessionFactory, return a instance of SqlSession.
     public static SqlSession getSqlSession() {
-        String resource = "edu/libsys/conf/mybatis-config.xml";
+        String resource = "resources/mybatis-config.xml";
         if (sqlSessionFactory == null) {
             try {
                 InputStream inputStream = Resources.getResourceAsStream(resource);
