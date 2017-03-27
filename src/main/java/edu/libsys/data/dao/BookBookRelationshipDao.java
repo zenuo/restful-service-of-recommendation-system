@@ -16,10 +16,7 @@ public class BookBookRelationshipDao {
             integerList.addAll(bookBookRelationshipMapper.getRecommendBookList_01(bookId));
             integerList.addAll(bookBookRelationshipMapper.getRecommendBookList_02(bookId));
         }
-        //Test
-        System.out.println("Got bookId:" + bookId);
-        System.out.println("List are:");
-        integerList.forEach(System.out::println);
+        System.out.println("Got bookId:" + bookId + ", list size: " + integerList.size());
         //去重后返回
         return ListUtil.dedupIntegerList(integerList);
     }

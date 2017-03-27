@@ -19,9 +19,7 @@ public class PaperPaperRelationshipDao {
             e.printStackTrace();
         }
         //Test
-        System.out.println("Got paper:" + paperId);
-        System.out.println("List are:");
-        integerList.forEach(System.out::println);
+        System.out.println("Got paperId:" + paperId + ", list size: " + integerList.size());
         //去重后返回
         return ListUtil.dedupIntegerList(integerList);
     }

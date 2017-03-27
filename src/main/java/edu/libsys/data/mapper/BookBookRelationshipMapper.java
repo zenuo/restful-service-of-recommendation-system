@@ -13,9 +13,9 @@ public interface BookBookRelationshipMapper {
             @Result(property = "bookId_2", column = "bookId_2")
     })
 
-    @Select("SELECT bookId_1 WHERE bookId_2=#{bookId}")
+    @Select("SELECT bookId_1 FROM BOOK_BOOK WHERE bookId_2=#{bookId}")
     List<Integer> getRecommendBookList_01(@QueryParam("bookId") final int bookId);
 
-    @Select("SELECT bookId_2 WHERE bookId_1=#{bookId}")
+    @Select("SELECT bookId_2 FROM BOOK_BOOK WHERE bookId_1=#{bookId}")
     List<Integer> getRecommendBookList_02(@QueryParam("bookId") final int bookId);
 }
