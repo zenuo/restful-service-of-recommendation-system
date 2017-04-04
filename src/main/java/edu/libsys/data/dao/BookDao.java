@@ -1,6 +1,6 @@
 package edu.libsys.data.dao;
 
-import edu.libsys.data.mapper.BookMapper;
+import edu.libsys.data.mapper.mariadb.BookMapper;
 import edu.libsys.entity.Book;
 import org.apache.ibatis.session.SqlSession;
 
@@ -11,7 +11,7 @@ import java.util.List;
 public class BookDao implements Serializable {
     public Book getBookById(final int id) {
         Book book = null;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
             book = bookMapper.getBookById(id);
         } catch (Exception e) {
@@ -22,7 +22,7 @@ public class BookDao implements Serializable {
 
     public List<Book> getBookListByIdList(final List<Integer> integerList) {
         List<Book> bookList = new LinkedList<>();
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
             for (Integer anIntegerList : integerList) {
                 bookList.add(bookMapper.getBookById(anIntegerList));
@@ -35,7 +35,7 @@ public class BookDao implements Serializable {
 
     public int addBook(final Book book) {
         int status = 0;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
             bookMapper.addBook(book);
             sqlSession.commit();
@@ -48,7 +48,7 @@ public class BookDao implements Serializable {
 
     public int updateBook(final Book book) {
         int status = 0;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
             bookMapper.updataBook(book);
             sqlSession.commit();
@@ -61,7 +61,7 @@ public class BookDao implements Serializable {
 
     public int deleteBook(final int marcRecId) {
         int status = 0;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
             bookMapper.deleteBook(marcRecId);
             sqlSession.commit();
@@ -74,7 +74,7 @@ public class BookDao implements Serializable {
 
     public int countBook() {
         int count = 0;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
             count = bookMapper.countBook();
         } catch (Exception e) {
@@ -85,7 +85,7 @@ public class BookDao implements Serializable {
 
     public List<Book> getBookListBySearchTitle(final String keyWord) {
         List<Book> bookList = null;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
             bookList = bookMapper.getBookListBySearchTitle(keyWord);
         } catch (Exception e) {
@@ -96,7 +96,7 @@ public class BookDao implements Serializable {
 
     public List<Book> getBookListBySearchAuthor(final String keyWord) {
         List<Book> bookList = null;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
             bookList = bookMapper.getBookListBySearchAuthor(keyWord);
         } catch (Exception e) {
@@ -107,7 +107,7 @@ public class BookDao implements Serializable {
 
     public List<Book> getBookList(final int page, final int size) {
         List<Book> bookList = null;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
             bookList = bookMapper.getBookList(page, size);
         } catch (Exception e) {
@@ -118,7 +118,7 @@ public class BookDao implements Serializable {
 
     public int likeCountPlusOne(final int id) {
         int status = 0;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
             bookMapper.likeCountPlusOne(id);
             sqlSession.commit();
@@ -131,7 +131,7 @@ public class BookDao implements Serializable {
 
     public int disLikeCountPlusOne(final int id) {
         int status = 0;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
             bookMapper.disLikeCountPlusOne(id);
             sqlSession.commit();

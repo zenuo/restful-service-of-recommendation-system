@@ -1,6 +1,6 @@
 package edu.libsys.data.dao;
 
-import edu.libsys.data.mapper.BookBookRelationshipMapper;
+import edu.libsys.data.mapper.neo4j.BookBookRelationshipMapper;
 import edu.libsys.util.ListUtil;
 import org.apache.ibatis.session.SqlSession;
 
@@ -10,7 +10,7 @@ import java.util.List;
 public class BookBookRelationshipDao {
     public List<Integer> getRecommendBookList(final int bookId){
         List<Integer> integerList = new LinkedList<>();
-        try(SqlSession sqlSession = SessionFactory.getSqlSession()){
+        try(SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()){
             BookBookRelationshipMapper bookBookRelationshipMapper =
                     sqlSession.getMapper(BookBookRelationshipMapper.class);
             integerList.addAll(bookBookRelationshipMapper.getRecommendBookList_01(bookId));

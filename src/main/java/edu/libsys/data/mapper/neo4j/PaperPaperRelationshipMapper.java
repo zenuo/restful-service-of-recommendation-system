@@ -1,4 +1,4 @@
-package edu.libsys.data.mapper;
+package edu.libsys.data.mapper.neo4j;
 
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;

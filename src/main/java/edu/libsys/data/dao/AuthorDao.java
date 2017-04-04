@@ -1,6 +1,6 @@
 package edu.libsys.data.dao;
 
-import edu.libsys.data.mapper.AuthorMapper;
+import edu.libsys.data.mapper.mariadb.AuthorMapper;
 import edu.libsys.entity.Author;
 import org.apache.ibatis.session.SqlSession;
 
@@ -10,7 +10,7 @@ import java.util.List;
 public class AuthorDao implements Serializable {
     public Author getUserById(final int id) {
         Author author = null;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             AuthorMapper authorMapper = sqlSession.getMapper(AuthorMapper.class);
             author = authorMapper.getUserById(id);
         } catch (Exception e) {
@@ -21,7 +21,7 @@ public class AuthorDao implements Serializable {
 
     public int addAuthor(final Author author) {
         int status = 0;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             AuthorMapper authorMapper = sqlSession.getMapper(AuthorMapper.class);
             authorMapper.addAuthor(author);
             sqlSession.commit();
@@ -35,7 +35,7 @@ public class AuthorDao implements Serializable {
 
     public int updateAuthor(final Author author) {
         int status = 0;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             AuthorMapper authorMapper = sqlSession.getMapper(AuthorMapper.class);
             authorMapper.updateAuthor(author);
             sqlSession.commit();
@@ -48,7 +48,7 @@ public class AuthorDao implements Serializable {
 
     public int deleteAuthor(final Author author) {
         int status = 0;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             AuthorMapper authorMapper = sqlSession.getMapper(AuthorMapper.class);
             authorMapper.deleteAuthor(author);
             sqlSession.commit();
@@ -61,7 +61,7 @@ public class AuthorDao implements Serializable {
 
     public int likeCountPlusOne(final int id) {
         int status = 0;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             AuthorMapper authorMapper = sqlSession.getMapper(AuthorMapper.class);
             authorMapper.likeCountPlusOne(id);
             sqlSession.commit();
@@ -74,7 +74,7 @@ public class AuthorDao implements Serializable {
 
     public int disLikeCountPlusOne(final int id) {
         int status = 0;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             AuthorMapper authorMapper = sqlSession.getMapper(AuthorMapper.class);
             authorMapper.disLikeCountPlusOne(id);
             status = 1;
@@ -86,7 +86,7 @@ public class AuthorDao implements Serializable {
 
     public List<Author> getAuthorList() {
         List<Author> authorList = null;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             AuthorMapper authorMapper = sqlSession.getMapper(AuthorMapper.class);
             authorList = authorMapper.getAuthorList();
         } catch (Exception e) {
@@ -97,7 +97,7 @@ public class AuthorDao implements Serializable {
 
     public int countAuthor() {
         int count = 0;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             AuthorMapper authorMapper = sqlSession.getMapper(AuthorMapper.class);
             count = authorMapper.countAuthor();
         } catch (Exception e) {
@@ -108,7 +108,7 @@ public class AuthorDao implements Serializable {
 
     public List<Author> getAuthorListBySearchName(final String keyWord) {
         List<Author> authorList = null;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             AuthorMapper authorMapper = sqlSession.getMapper(AuthorMapper.class);
             authorList = authorMapper.getAuthorListBySearchName(keyWord);
             System.out.println(authorList.size());

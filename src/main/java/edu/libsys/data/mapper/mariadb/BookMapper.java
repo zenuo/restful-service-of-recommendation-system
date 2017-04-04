@@ -1,4 +1,4 @@
-package edu.libsys.data.mapper;
+package edu.libsys.data.mapper.mariadb;
 
 import edu.libsys.entity.Book;
 import org.apache.ibatis.annotations.*;

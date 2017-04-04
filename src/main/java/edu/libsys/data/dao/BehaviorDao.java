@@ -1,6 +1,6 @@
 package edu.libsys.data.dao;
 
-import edu.libsys.data.mapper.BehaviorMapper;
+import edu.libsys.data.mapper.mariadb.BehaviorMapper;
 import edu.libsys.entity.Behavior;
 import org.apache.ibatis.session.SqlSession;
 
@@ -10,7 +10,7 @@ import java.util.List;
 public class BehaviorDao implements Serializable {
     public Behavior getBehaviorById(final int id) {
         Behavior behavior = null;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             BehaviorMapper behaviorMapper = sqlSession.getMapper(BehaviorMapper.class);
             behavior = behaviorMapper.getBehaviorById(id);
         } catch (Exception e) {
@@ -21,7 +21,7 @@ public class BehaviorDao implements Serializable {
 
     public int addBehavior(final Behavior behavior) {
         int status = 0;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             BehaviorMapper behaviorMapper = sqlSession.getMapper(BehaviorMapper.class);
             behaviorMapper.addBehavior(behavior);
             status = 1;
@@ -33,7 +33,7 @@ public class BehaviorDao implements Serializable {
 
     public List<Behavior> getBehaviorList() {
         List<Behavior> behaviorList = null;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             BehaviorMapper behaviorMapper = sqlSession.getMapper(BehaviorMapper.class);
             behaviorList = behaviorMapper.getBehaviorList();
         } catch (Exception e) {
@@ -44,7 +44,7 @@ public class BehaviorDao implements Serializable {
 
     public List<Behavior> getBehaviorListByUserId(final int userId) {
         List<Behavior> behaviorList = null;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             BehaviorMapper behaviorMapper = sqlSession.getMapper(BehaviorMapper.class);
             behaviorList = behaviorMapper.getBehaviorListByUserId(userId);
         } catch (Exception e) {
@@ -55,7 +55,7 @@ public class BehaviorDao implements Serializable {
 
     List<Behavior> getBehaviorListByItemId(final int itemId) {
         List<Behavior> behaviorList = null;
-        try (SqlSession sqlSession = SessionFactory.getSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             BehaviorMapper behaviorMapper = sqlSession.getMapper(BehaviorMapper.class);
             behaviorList = behaviorMapper.getBehaviorListByItemId(itemId);
         } catch (Exception e) {
