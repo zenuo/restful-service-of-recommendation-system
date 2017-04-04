@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
-public interface BookMapper {
+public interface BookMapperForMariaDB {
     @Results({
             @Result(property = "id", column = "id"),
             @Result(property = "marcRecId", column = "marcRecId"),

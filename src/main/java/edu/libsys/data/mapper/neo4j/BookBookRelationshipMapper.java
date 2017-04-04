@@ -1,21 +1,18 @@
 package edu.libsys.data.mapper.neo4j;
 
+import edu.libsys.conf.Conf;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 
-import javax.ws.rs.QueryParam;
 import java.util.List;
 
 public interface BookBookRelationshipMapper {
     @Results({
-            @Result(property = "bookId_1", column = "bookId_1"),
-            @Result(property = "bookId_2", column = "bookId_2")
+            @Result(property = "id", column = "id")
     })
 
-    @Select("SELECT bookId_1 FROM BOOK_BOOK WHERE bookId_2=#{bookId} LIMIT 20")
-    List<Integer> getRecommendBookList_01(@QueryParam("bookId") final int bookId);
-
-    @Select("SELECT bookId_2 FROM BOOK_BOOK WHERE bookId_1=#{bookId} LIMIT 20")
-    List<Integer> getRecommendBookList_02(@QueryParam("bookId") final int bookId);
+    @Select("MATCH p=(book1:Book {id:#{bookId}})-[r:`0`]->(book2:Book) RETURN book2.id AS id ORDER BY book2.weight DESC LIMIT " + Conf.LIMIT_OF_QUERY + ";")
+    List<Integer> getRecommendBookListByBookId(@Param("bookId") final int bookId);
 }

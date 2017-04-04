@@ -11,7 +11,7 @@ public class PaperBookRelationshipDao implements Serializable {
 
     public List<Integer> getRecommendPaperIdListByBookId(final int bookId) {
         List<Integer> integerList = null;
-        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getNeo4jSqlSession()) {
             PaperBookRelationshipMapper paperBookRelationshipMapper =
                     sqlSession.getMapper(PaperBookRelationshipMapper.class);
             integerList =
@@ -19,15 +19,13 @@ public class PaperBookRelationshipDao implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //Test
-        System.out.println("Got bookId:" + bookId + ", list size: " + integerList.size());
         //去重后返回
         return ListUtil.dedupIntegerList(integerList);
     }
 
     public List<Integer> getRecommendBookIdListByPaperId(final int paperId) {
         List<Integer> integerList = null;
-        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
+        try (SqlSession sqlSession = SqlSessionFactory.getNeo4jSqlSession()) {
             PaperBookRelationshipMapper paperBookRelationshipMapper =
                     sqlSession.getMapper(PaperBookRelationshipMapper.class);
             integerList =
@@ -35,9 +33,7 @@ public class PaperBookRelationshipDao implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //Test
-        System.out.println("Got paperId:" + paperId + ", list size: " + integerList.size());
         //去重后返回
-        return ListUtil.dedupIntegerList(integerList);
+        return integerList;
     }
 }

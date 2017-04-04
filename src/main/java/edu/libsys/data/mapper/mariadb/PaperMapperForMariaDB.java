@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
-public interface PaperMapper {
+public interface PaperMapperForMariaDB {
     @Results({
             @Result(property = "id", column = "id"),
             @Result(property = "paperId", column = "paperId"),

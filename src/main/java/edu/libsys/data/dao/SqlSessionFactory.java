@@ -13,6 +13,9 @@ import java.sql.SQLException;
 
 public class SqlSessionFactory {
 
+    /**
+     * 两个静态会话工厂
+     */
     public static org.apache.ibatis.session.SqlSessionFactory MariaDBSqlSessionFactory;
     public static org.apache.ibatis.session.SqlSessionFactory Neo4jSqlSessionFactory;
 
