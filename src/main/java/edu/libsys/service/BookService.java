@@ -11,7 +11,7 @@ import java.util.List;
 @Path("books")
 @Provider
 @Produces({"application/x-javascript;charset=UTF-8", "application/json;charset=UTF-8"})
-public class BookResource {
+public class BookService {
 
     //Book数据访问对象
     private final BookDao bookDao = new BookDao();

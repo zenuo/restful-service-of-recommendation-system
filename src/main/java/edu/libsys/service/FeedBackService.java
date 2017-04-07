@@ -3,13 +3,16 @@ package edu.libsys.service;
 import edu.libsys.data.dao.BookDao;
 import edu.libsys.data.dao.PaperDao;
 
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.ext.Provider;
 
 @Path("feedback")
 @Provider
 @Produces({"application/x-javascript;charset=UTF-8", "application/json;charset=UTF-8"})
-public class FeedBack {
+public class FeedBackService {
     private final PaperDao paperDao = new PaperDao();
     private final BookDao bookDao = new BookDao();
 

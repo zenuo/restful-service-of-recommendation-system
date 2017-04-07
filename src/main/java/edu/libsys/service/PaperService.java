@@ -12,7 +12,7 @@ import java.util.List;
 @Path("papers")
 @Provider
 @Produces({"application/x-javascript;charset=UTF-8", "application/json;charset=UTF-8"})
-public class PaperResource {
+public class PaperService {
 
     //Paper数据访问对象
     private final PaperDao paperDao = new PaperDao();

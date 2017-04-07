@@ -14,7 +14,7 @@ import java.util.List;
 @Path("recommend")
 @Provider
 @Produces({"application/x-javascript;charset=UTF-8", "application/json;charset=UTF-8"})
-public class RecommendResource {
+public class RecommendService {
 
     //Paper数据访问对象
     private final PaperDao paperDao = new PaperDao();
