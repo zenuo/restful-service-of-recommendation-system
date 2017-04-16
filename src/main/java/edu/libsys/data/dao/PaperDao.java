@@ -26,8 +26,10 @@ public class PaperDao implements Serializable {
         List<Paper> paperList = new LinkedList<>();
         try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             PaperMapperForMariaDB paperMapperForMariaDB = sqlSession.getMapper(PaperMapperForMariaDB.class);
-            for (Integer anIntegerList : integerList) {
-                paperList.add(paperMapperForMariaDB.getPaperById(anIntegerList));
+            for (Integer id : integerList) {
+                if (id != 0) {
+                    paperList.add(paperMapperForMariaDB.getPaperById(id));
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,14 +49,8 @@ public class PaperDao implements Serializable {
     }
 
     public List<Paper> getPaperListBySearchTitle(final String keyWord) {
-        List<Paper> paperList = null;
-        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
-            PaperMapperForMariaDB paperMapperForMariaDB = sqlSession.getMapper(PaperMapperForMariaDB.class);
-            paperList = paperMapperForMariaDB.getPaperListBySearchTitle(keyWord);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return paperList;
+        List<Integer> idList = JedisUtil.search(1, keyWord);
+        return getPaperListByIdList(idList);
     }
 
     public List<Paper> getPaperListBySearchIntro(final String keyWord) {

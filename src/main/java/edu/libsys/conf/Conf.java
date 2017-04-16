@@ -9,5 +9,10 @@ public class Conf {
     /**
      * 一个物件被点赞一次时增加的权重
      */
-    public static final int WEIGHT_OF_A_LIKE = 3;
+    public static final int WEIGHT_OF_A_LIKE = 5;
+
+    /**
+     *
+     */
+    public static final int MAX_AMOUNT_OF_SERACH = 40;
 }

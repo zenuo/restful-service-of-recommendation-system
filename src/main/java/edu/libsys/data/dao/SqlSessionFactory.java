@@ -81,7 +81,8 @@ public class SqlSessionFactory {
         BasicDataSource mariadb = new BasicDataSource();
         mariadb.setDriverClassName("org.mariadb.jdbc.Driver");
         mariadb.setUrl("jdbc:mariadb://localhost:3306/LIBSYS");
-        mariadb.setUsername("spark");
+        //MariaDB账户密码
+        mariadb.setUsername("root");
         mariadb.setPassword("123456a");
         return mariadb;
     }
@@ -95,6 +96,7 @@ public class SqlSessionFactory {
         BasicDataSource neo4j = new BasicDataSource();
         neo4j.setDriverClassName("org.neo4j.jdbc.bolt.BoltDriver");
         neo4j.setUrl("jdbc:neo4j:bolt://localhost:7687");
+        //Neo4j账户密码
         neo4j.setUsername("neo4j");
         neo4j.setPassword("123456a");
         return neo4j;

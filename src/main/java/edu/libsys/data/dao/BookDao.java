@@ -26,8 +26,10 @@ public class BookDao implements Serializable {
         List<Book> bookList = new LinkedList<>();
         try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
             BookMapperForMariaDB bookMapperForMariaDB = sqlSession.getMapper(BookMapperForMariaDB.class);
-            for (Integer anIntegerList : integerList) {
-                bookList.add(bookMapperForMariaDB.getBookById(anIntegerList));
+            for (Integer id : integerList) {
+                if (id != 0) {
+                    bookList.add(bookMapperForMariaDB.getBookById(id));
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,14 +88,8 @@ public class BookDao implements Serializable {
     }
 
     public List<Book> getBookListBySearchTitle(final String keyWord) {
-        List<Book> bookList = null;
-        try (SqlSession sqlSession = SqlSessionFactory.getMariaDBSqlSession()) {
-            BookMapperForMariaDB bookMapperForMariaDB = sqlSession.getMapper(BookMapperForMariaDB.class);
-            bookList = bookMapperForMariaDB.getBookListBySearchTitle(keyWord);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return bookList;
+        List<Integer> idArray = JedisUtil.search(0, keyWord);
+        return getBookListByIdList(idArray);
     }
 
     public List<Book> getBookListBySearchAuthor(final String keyWord) {
