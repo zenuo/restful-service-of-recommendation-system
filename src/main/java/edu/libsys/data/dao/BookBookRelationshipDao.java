@@ -1,6 +1,7 @@
 package edu.libsys.data.dao;
 
 import edu.libsys.data.mapper.neo4j.BookBookRelationshipMapper;
+import edu.libsys.util.ListUtil;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -15,6 +16,6 @@ public class BookBookRelationshipDao {
         }
         System.out.println("Got bookId:" + bookId + ", list size: " + integerList.size());
         //去重后返回
-        return integerList;
+        return ListUtil.deDupIntegerList(integerList);
     }
 }

@@ -50,7 +50,7 @@ public class JedisUtil {
                 cursor = scanResult.getStringCursor();
                 resultStringList.addAll(scanResult.getResult());
                 //在结果数量大于预订数量时退出
-            } while (resultStringList.size() <= Conf.MAX_AMOUNT_OF_SERACH && !"0".equals(cursor));
+            } while (resultStringList.size() <= Conf.MAX_AMOUNT_OF_SEARCH && !"0".equals(cursor));
         }
         //结果-整型数组
         List<Integer> resultIntList = new ArrayList<>();

@@ -1,13 +1,13 @@
 package edu.libsys.entity;
 
-public class Item {
+public class ItemEntity {
     private int marcRecId;
     private int propId;
     private int lendCount;
     private int likeCount = 0;
     private int disLikeCount = 0;
 
-    public Item(int marcRecId, int propId, int lendCount) {
+    public ItemEntity(int marcRecId, int propId, int lendCount) {
         this.marcRecId = marcRecId;
         this.propId = propId;
         this.lendCount = lendCount;
@@ -56,7 +56,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" +
+        return "ItemEntity{" +
                 "propId=" + propId +
                 ", marcRecId=" + marcRecId +
                 ", lendCount=" + lendCount +

@@ -3,6 +3,7 @@ package edu.libsys.service;
 import edu.libsys.data.dao.*;
 import edu.libsys.entity.Book;
 import edu.libsys.entity.Paper;
+import edu.libsys.util.ListUtil;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -41,7 +42,7 @@ public class RecommendService {
             BookBookRelationshipDao bookBookRelationshipDao = new BookBookRelationshipDao();
             bookList = bookDao.getBookListByIdList(bookBookRelationshipDao.getRecommendBookList(id));
         }
-        return bookList;
+        return ListUtil.deDupBookList(bookList);
     }
 
     /**
@@ -63,6 +64,6 @@ public class RecommendService {
             PaperBookRelationshipDao paperBookRelationshipDao = new PaperBookRelationshipDao();
             paperList = paperDao.getPaperListByIdList(paperBookRelationshipDao.getRecommendPaperIdListByBookId(id));
         }
-        return paperList;
+        return ListUtil.deDupPaperList(paperList);
     }
 }

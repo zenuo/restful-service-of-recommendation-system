@@ -20,7 +20,7 @@ public class PaperBookRelationshipDao implements Serializable {
             e.printStackTrace();
         }
         //去重后返回
-        return ListUtil.dedupIntegerList(integerList);
+        return ListUtil.deDupIntegerList(integerList);
     }
 
     public List<Integer> getRecommendBookIdListByPaperId(final int paperId) {
@@ -34,6 +34,6 @@ public class PaperBookRelationshipDao implements Serializable {
             e.printStackTrace();
         }
         //去重后返回
-        return integerList;
+        return ListUtil.deDupIntegerList(integerList);
     }
 }

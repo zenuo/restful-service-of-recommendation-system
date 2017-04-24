@@ -1,5 +1,6 @@
 package edu.libsys.util;
 
+import edu.libsys.entity.Book;
 import org.apache.log4j.PropertyConfigurator;
 import redis.clients.jedis.*;
 
@@ -11,25 +12,35 @@ import java.util.List;
 public class Test {
     //test
     public static void main(String[] args) throws SQLException {
-        redis();
+        testBookListDeDup();
     }
-/*
 
-    public static void mongodb(){
-        ServerAddress serverAddress = new ServerAddress("localhost", 8002);
-        List<ServerAddress> addresses = new ArrayList<>();
-        addresses.add(serverAddress);
-        MongoCredential credential = MongoCredential.createCredential("spark", "libsys", "123456a".toCharArray());
-        List<MongoCredential> credentials = new ArrayList<>();
-        credentials.add(credential);
+    public static void testBookListDeDup() {
+        Book b1 = new Book();
+        b1.setId(1);
+        b1.setIsbn("10-1");
 
-        MongoClient mongoClient = new MongoClient(addresses, credentials);
+        Book b2 = new Book();
+        b2.setId(2);
+        b2.setIsbn("10-1");
 
-        MongoDatabase mongoDatabase = mongoClient.getDatabase("libsys");
-        MongoCollection<Document> collection = mongoDatabase.getCollection("book");
-        //collection.f
+        Book b3 = new Book();
+        b3.setId(3);
+        b3.setIsbn("10-2");
+
+        Book b4 = new Book();
+        b4.setId(4);
+        b4.setIsbn("10-2");
+
+        List<Book> bookList = new ArrayList<>();
+        bookList.add(b1);
+        bookList.add(b2);
+        bookList.add(b3);
+        bookList.add(b4);
+
+        List<Book> deduped = ListUtil.deDupBookList(bookList);
+        deduped.forEach(System.out::println);
     }
-*/
 
     public static void redis() {
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();

@@ -1,6 +1,7 @@
 package edu.libsys.data.dao;
 
 import edu.libsys.data.mapper.neo4j.PaperPaperRelationshipMapper;
+import edu.libsys.util.ListUtil;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.LinkedList;
@@ -19,6 +20,6 @@ public class PaperPaperRelationshipDao {
         //Test
         System.out.println("Got paperId:" + paperId + ", list size: " + integerList.size());
         //去重后返回
-        return integerList;
+        return ListUtil.deDupIntegerList(integerList);
     }
 }
