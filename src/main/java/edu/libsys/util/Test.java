@@ -18,11 +18,11 @@ public class Test {
     public static void testBookListDeDup() {
         Book b1 = new Book();
         b1.setId(1);
-        b1.setIsbn("10-1");
+        b1.setIsbn("10-1a");
 
         Book b2 = new Book();
         b2.setId(2);
-        b2.setIsbn("10-1");
+        b2.setIsbn("10-1a");
 
         Book b3 = new Book();
         b3.setId(3);

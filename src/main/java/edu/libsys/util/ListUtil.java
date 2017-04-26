@@ -27,9 +27,10 @@ public class ListUtil {
      */
     public static List<Book> deDupBookList(List<Book> bookList) {
         List<Book> resultBookList = new LinkedList<>();
-        List<Long> isbnList = new LinkedList<>();
+        //isbn可能含有“x”
+        List<String> isbnList = new LinkedList<>();
         for (int i = 0; i < bookList.size(); i++) {
-            long isbn = Long.valueOf(bookList.get(i).getIsbn().replace("-", ""));
+            String isbn = bookList.get(i).getIsbn().replace("-", "");
             if (!isbnList.contains(isbn)) {
                 isbnList.add(isbn);
                 resultBookList.add(bookList.get(i));
