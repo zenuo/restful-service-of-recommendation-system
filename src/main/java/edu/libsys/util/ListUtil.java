@@ -10,12 +10,12 @@ import java.util.stream.Collectors;
 public class ListUtil {
     /**
      * 整数列表去重
-     * http://stackoverflow.com/questions/27464781/creating-distinct-list-from-existing-list-in-java-7-and-8
      *
      * @param integerList 需要去重的整数列表
      * @return 去重后的证书列表
      */
     public static List<Integer> deDupIntegerList(List<Integer> integerList) {
+        //http://stackoverflow.com/questions/27464781/creating-distinct-list-from-existing-list-in-java-7-and-8
         return integerList.stream().distinct().collect(Collectors.toList());
     }
 
@@ -27,13 +27,13 @@ public class ListUtil {
      */
     public static List<Book> deDupBookList(List<Book> bookList) {
         List<Book> resultBookList = new LinkedList<>();
-        //isbn可能含有“x”
+        //isbn可能含有“x”，故将“Long”改为“String”
         List<String> isbnList = new LinkedList<>();
-        for (int i = 0; i < bookList.size(); i++) {
-            String isbn = bookList.get(i).getIsbn().replace("-", "");
+        for (Book book : bookList) {
+            String isbn = book.getIsbn().replace("-", "");
             if (!isbnList.contains(isbn)) {
                 isbnList.add(isbn);
-                resultBookList.add(bookList.get(i));
+                resultBookList.add(book);
             }
         }
         return resultBookList;
@@ -48,11 +48,11 @@ public class ListUtil {
     public static List<Paper> deDupPaperList(List<Paper> paperList) {
         List<Paper> resultPaperList = new LinkedList<>();
         List<String> paperIdList = new LinkedList<>();
-        for (int i = 0; i < paperList.size(); i++) {
-            String paperId = paperList.get(i).getPaperId().replace(".nh", "");
+        for (Paper paper : paperList) {
+            String paperId = paper.getPaperId().replace(".nh", "");
             if (!paperIdList.contains(paperId)) {
                 paperIdList.add(paperId);
-                resultPaperList.add(paperList.get(i));
+                resultPaperList.add(paper);
             }
         }
         return resultPaperList;
