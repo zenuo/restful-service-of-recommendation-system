@@ -19,8 +19,9 @@ public class FeedBackService {
     /**
      * 处理点赞，更新物件权重
      *
-     * @param id   物件编号
-     * @param type 物件类型
+     * @param id     物件编号
+     * @param type   物件类型
+     * @param weight 权重编号
      * @return 状态
      */
     @Path("like")

@@ -24,11 +24,17 @@ public class Paper {
     private int likeCount;
     @JsonProperty("disLikeCount")
     private int disLikeCount;
+    @JsonProperty("filed")
+    private String field;
+    @JsonProperty("indexTerm")
+    private String indexTerm;
+    @JsonProperty("author")
+    private String author;
 
     public Paper() {
     }
 
-    public Paper(int id, String paperId, String title, String searchWord, String source, String url, String intro, int likeCount, int disLikeCount) {
+    public Paper(int id, String paperId, String title, String searchWord, String source, String url, String intro, int likeCount, int disLikeCount, String field, String indexTerm, String author) {
         this.id = id;
         this.paperId = paperId;
         this.title = title;
@@ -38,8 +44,10 @@ public class Paper {
         this.intro = intro;
         this.likeCount = likeCount;
         this.disLikeCount = disLikeCount;
+        this.field = field;
+        this.indexTerm = indexTerm;
+        this.author = author;
     }
-
 
     public int getId() {
         return id;
@@ -49,7 +57,6 @@ public class Paper {
         this.id = id;
     }
 
-
     public String getPaperId() {
         return paperId;
     }
@@ -57,7 +64,6 @@ public class Paper {
     public void setPaperId(String paperId) {
         this.paperId = paperId;
     }
-
 
     public String getTitle() {
         return title;
@@ -115,6 +121,30 @@ public class Paper {
         this.disLikeCount = disLikeCount;
     }
 
+    public String getField() {
+        return field;
+    }
+
+    public void setField(String field) {
+        this.field = field;
+    }
+
+    public String getIndexTerm() {
+        return indexTerm;
+    }
+
+    public void setIndexTerm(String indexTerm) {
+        this.indexTerm = indexTerm;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
     @Override
     public String toString() {
         return "Paper{" +
@@ -127,6 +157,9 @@ public class Paper {
                 ", intro='" + intro + '\'' +
                 ", likeCount=" + likeCount +
                 ", disLikeCount=" + disLikeCount +
+                ", field='" + field + '\'' +
+                ", indexTerm='" + indexTerm + '\'' +
+                ", author='" + author + '\'' +
                 '}';
     }
 }

@@ -25,8 +25,9 @@ public class RecommendService {
     /**
      * 获取图书资源
      *
-     * @param id   编号
-     * @param type 原物件类型
+     * @param id     编号
+     * @param type   原物件类型
+     * @param weight 权重编号
      * @return 图书列表
      */
     @Path("books")
@@ -38,11 +39,11 @@ public class RecommendService {
         if ("paper".equals(type)) {
             //根据论文ID获取图书推荐资源
             PaperBookRelationshipDao paperBookRelationshipDao = new PaperBookRelationshipDao();
-            bookList = bookDao.getBookListByIdList(paperBookRelationshipDao.getRecommendBookIdListByPaperId(id));
+            bookList = bookDao.getBookListByIdList(paperBookRelationshipDao.getRecommendBookIdListByPaperId(id, weight));
         } else if ("book".equals(type)) {
             //根据图书ID获取图书推荐资源
             BookBookRelationshipDao bookBookRelationshipDao = new BookBookRelationshipDao();
-            bookList = bookDao.getBookListByIdList(bookBookRelationshipDao.getRecommendBookList(id));
+            bookList = bookDao.getBookListByIdList(bookBookRelationshipDao.getRecommendBookList(id, weight));
         }
         return ListUtil.deDupBookList(bookList);
     }
@@ -50,8 +51,9 @@ public class RecommendService {
     /**
      * 获取论文资源
      *
-     * @param id   物件编号
-     * @param type 原物件类型
+     * @param id     物件编号
+     * @param type   原物件类型
+     * @param weight 权重编号
      * @return 论文列表
      */
     @Path("papers")
@@ -63,11 +65,11 @@ public class RecommendService {
         if ("paper".equals(type)) {
             //根据论文ID获取论文推荐
             PaperPaperRelationshipDao paperPaperRelationshipDao = new PaperPaperRelationshipDao();
-            paperList = paperDao.getPaperListByIdList(paperPaperRelationshipDao.getRecommendPaperIdList(id));
+            paperList = paperDao.getPaperListByIdList(paperPaperRelationshipDao.getRecommendPaperIdList(id, weight));
         } else if ("book".equals(type)) {
             //根据图书ID获取论文推荐
             PaperBookRelationshipDao paperBookRelationshipDao = new PaperBookRelationshipDao();
-            paperList = paperDao.getPaperListByIdList(paperBookRelationshipDao.getRecommendPaperIdListByBookId(id));
+            paperList = paperDao.getPaperListByIdList(paperBookRelationshipDao.getRecommendPaperIdListByBookId(id, weight));
         }
         return ListUtil.deDupPaperList(paperList);
     }

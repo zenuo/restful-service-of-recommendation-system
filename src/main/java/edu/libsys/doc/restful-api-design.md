@@ -24,13 +24,20 @@
 ## 3.推荐部分
 |功能|资源地址|示例|
 | --- | --- | --- |
-|根据图书ID获取论文推荐|GET /recommend/papers?id={id}&type=book|GET /recommend/papers?id=1&type=book|
-|根据论文ID获取论文推荐|GET /recommend/papers?id={id}&type=paper|GET /recommend/papers?id=1&type=paper|
-|根据图书ID获取图书推荐|GET /recommend/books?id={id}&type=book|GET /recommend/books?id=1&type=book|
-|根据论文ID获取图书推荐|GET /recommend/books?id={id}&type=paper|GET /recommend/books?id=1&type=paper|
+|根据图书ID获取论文推荐|GET /recommend/papers?id={id}&type=book&weight={weight}|GET /recommend/papers?id=1&type=book&weight=1|
+|根据论文ID获取论文推荐|GET /recommend/papers?id={id}&type=paper&weight={weight}|GET /recommend/papers?id=1&type=paper&weight=1|
+|根据图书ID获取图书推荐|GET /recommend/books?id={id}&type=book&weight={weight}|GET /recommend/books?id=1&type=book&weight=1|
+|根据论文ID获取图书推荐|GET /recommend/books?id={id}&type=paper&weight={weight}|GET /recommend/books?id=1&type=paper&weight=1|
 
 ## 4.反馈部分
 |功能|资源地址|示例|
 | --- | --- | --- |
-|根据图书ID点赞图书|GET /feedback/like?id={id}&type=book|GET /feedback/like?id=1&type=book|
-|根据论文ID点赞论文|GET /feedback/like?id={id}&type=paper|GET /feedback/like?id=1&type=paper|
+|根据图书ID点赞图书|GET /feedback/like?id={id}&type=book&weight={weight}|GET /feedback/like?id=1&type=book&weight=1|
+|根据论文ID点赞论文|GET /feedback/like?id={id}&type=paper&weight={weight}|GET /feedback/like?id=1&type=paper&weight=1|
+
+## 5.权重方案与编号
+|编号|名称|
+| --- | --- |
+|1|精确性|
+|2|折中|
+|3|多样性|
