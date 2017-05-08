@@ -25,19 +25,21 @@ public class RecommendService {
     /**
      * 获取图书资源
      *
-     * @param id 编号
+     * @param id   编号
      * @param type 原物件类型
      * @return 图书列表
      */
     @Path("books")
     @GET
-    public List<Book> getRecommendBookList(@QueryParam("id") final int id, @QueryParam("type") final String type) {
+    public List<Book> getRecommendBookList(@QueryParam("id") final int id,
+                                           @QueryParam("type") final String type,
+                                           @QueryParam("weight") final int weight) {
         List<Book> bookList = null;
-        if (type.equals("paper")) {
+        if ("paper".equals(type)) {
             //根据论文ID获取图书推荐资源
             PaperBookRelationshipDao paperBookRelationshipDao = new PaperBookRelationshipDao();
             bookList = bookDao.getBookListByIdList(paperBookRelationshipDao.getRecommendBookIdListByPaperId(id));
-        } else if (type.equals("book")) {
+        } else if ("book".equals(type)) {
             //根据图书ID获取图书推荐资源
             BookBookRelationshipDao bookBookRelationshipDao = new BookBookRelationshipDao();
             bookList = bookDao.getBookListByIdList(bookBookRelationshipDao.getRecommendBookList(id));
@@ -47,19 +49,22 @@ public class RecommendService {
 
     /**
      * 获取论文资源
-     * @param id 物件编号
+     *
+     * @param id   物件编号
      * @param type 原物件类型
      * @return 论文列表
      */
     @Path("papers")
     @GET
-    public List<Paper> getRecommendPaperList(@QueryParam("id") final int id, @QueryParam("type") final String type) {
+    public List<Paper> getRecommendPaperList(@QueryParam("id") final int id,
+                                             @QueryParam("type") final String type,
+                                             @QueryParam("weight") final int weight) {
         List<Paper> paperList = null;
-        if (type.equals("paper")) {
+        if ("paper".equals(type)) {
             //根据论文ID获取论文推荐
             PaperPaperRelationshipDao paperPaperRelationshipDao = new PaperPaperRelationshipDao();
             paperList = paperDao.getPaperListByIdList(paperPaperRelationshipDao.getRecommendPaperIdList(id));
-        } else if (type.equals("book")) {
+        } else if ("book".equals(type)) {
             //根据图书ID获取论文推荐
             PaperBookRelationshipDao paperBookRelationshipDao = new PaperBookRelationshipDao();
             paperList = paperDao.getPaperListByIdList(paperBookRelationshipDao.getRecommendPaperIdListByBookId(id));

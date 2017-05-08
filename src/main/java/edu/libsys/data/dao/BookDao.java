@@ -114,11 +114,24 @@ public class BookDao implements Serializable {
         return bookList;
     }
 
-    public int updateALike(final int id) {
+    /**
+     * 点赞
+     *
+     * @param id     需要点赞的图书
+     * @param weight 权重编号
+     * @return 状态
+     */
+    public int updateALike(final int id, final int weight) {
         int status = 0;
         try (SqlSession sqlSession = SqlSessionFactory.getNeo4jSqlSession()) {
             BookMapperForNeo4j bookMapperForNeo4j = sqlSession.getMapper(BookMapperForNeo4j.class);
-            bookMapperForNeo4j.addWeight(id, Conf.WEIGHT_OF_A_LIKE);
+            if (weight == 1) {
+                bookMapperForNeo4j.addWeight1(id, Conf.WEIGHT_OF_A_LIKE);
+            } else if (weight == 2) {
+                bookMapperForNeo4j.addWeight2(id, Conf.WEIGHT_OF_A_LIKE);
+            } else if (weight == 3) {
+                bookMapperForNeo4j.addWeight3(id, Conf.WEIGHT_OF_A_LIKE);
+            }
             sqlSession.commit();
             status = 1;
         } catch (Exception e) {
