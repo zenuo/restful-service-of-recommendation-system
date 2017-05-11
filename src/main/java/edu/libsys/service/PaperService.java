@@ -1,5 +1,6 @@
 package edu.libsys.service;
 
+import edu.libsys.conf.Conf;
 import edu.libsys.data.dao.PaperDao;
 import edu.libsys.entity.Paper;
 
@@ -58,6 +59,10 @@ public class PaperService {
     @GET
     @Produces({"application/x-javascript;charset=UTF-8", "application/json;charset=UTF-8"})
     public List<Paper> getPaperListBySearchTitle(@QueryParam("keyword") final String keyword) {
+        //如果检索关键词超出长度，返回空
+        if (keyword.length() > Conf.MAX_LENGTH_OF_SEARCH_KEYWORD) {
+            return null;
+        }
         List<Paper> paperList = new LinkedList<>();
         paperList.addAll(paperDao.getPaperListBySearchTitle(keyword));
         //较费时间，暂时关闭

@@ -88,7 +88,7 @@ public class BookDao implements Serializable {
     }
 
     public List<Book> getBookListBySearchTitle(final String keyWord) {
-        List<Integer> idArray = JedisUtil.search(0, keyWord);
+        List<Integer> idArray = JedisDao.search(0, keyWord);
         return getBookListByIdList(idArray);
     }
 

@@ -2,6 +2,11 @@
 >通过以下的api存取图书（book）、论文（paper）等资源。
 
 ## 1.图书部分
+### 1)论文属性
+|属性名称|marcRecId|callId|title|author|publisher|pubYear|isbn|likeCount|disLikeCount|id|callName|
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+|说明|图书标识|中图法分类号|标题|作者|出版时间|出版社|国际标准书号|点赞数|踩数|编号|中图法分类名|
+### 2)接口说明
 |功能|资源地址|示例|
 | --- | --- | --- |
 |添加|POST /books|POST /books|
@@ -12,6 +17,11 @@
 |关键词查询|GET /books/search?keyword={keyword}|GET /books/search?keyword=马克思|
 
 ## 2.论文部分
+### 1)论文属性
+|属性名称|paperId|title|searchWord|category|source|date|url|intro|id|likeCount|disLikeCount|field|indexTerm|author|
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+|说明|论文标识|标题|搜索关键词|分类|来源|日期|链接|简介|编号|点赞数|踩数|领域名称|关键词|作者|
+### 2)接口说明
 |功能|资源地址|示例|
 | --- | --- | --- |
 |添加|POST /papers|POST /papers|

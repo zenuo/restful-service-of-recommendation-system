@@ -49,7 +49,7 @@ public class PaperDao implements Serializable {
     }
 
     public List<Paper> getPaperListBySearchTitle(final String keyWord) {
-        List<Integer> idList = JedisUtil.search(1, keyWord);
+        List<Integer> idList = JedisDao.search(1, keyWord);
         return getPaperListByIdList(idList);
     }
 

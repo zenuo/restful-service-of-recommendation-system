@@ -16,25 +16,26 @@ public interface BookMapperForMariaDB {
             @Result(property = "pubYear", column = "pubYear"),
             @Result(property = "isbn", column = "isbn"),
             @Result(property = "likeCount", column = "likeCount"),
-            @Result(property = "disLikeCount", column = "disLikeCount")
+            @Result(property = "disLikeCount", column = "disLikeCount"),
+            @Result(property = "callName", column = "callName")
     })
 
-    @Select("SELECT id, marcRecId, callId, title, author, publisher, pubYear, isbn, likeCount, disLikeCount FROM BOOK WHERE id=#{id}")
+    @Select("SELECT id, marcRecId, callId, title, author, publisher, pubYear, isbn, likeCount, disLikeCount, callName FROM BOOK WHERE id=#{id}")
     Book getBookById(final int id);
 
     @Select("SELECT COUNT(*) FROM BOOK")
     int countBook();
 
-    @Select("SELECT id, marcRecId, callId, title, author, publisher, pubYear, isbn, likeCount, disLikeCount FROM BOOK WHERE title like CONCAT('%', #{keyWord}, '%') LIMIT 20")
+    @Select("SELECT id, marcRecId, callId, title, author, publisher, pubYear, isbn, likeCount, disLikeCount, callName FROM BOOK WHERE title like CONCAT('%', #{keyWord}, '%') LIMIT 20")
     List<Book> getBookListBySearchTitle(final String keyWord);
 
-    @Select("SELECT id, marcRecId, callId, title, author, publisher, pubYear, isbn, likeCount, disLikeCount FROM BOOK WHERE author like CONCAT('%', #{keyWord}, '%') LIMIT 20")
+    @Select("SELECT id, marcRecId, callId, title, author, publisher, pubYear, isbn, likeCount, disLikeCount, callName FROM BOOK WHERE author like CONCAT('%', #{keyWord}, '%') LIMIT 20")
     List<Book> getBookListBySearchAuthor(final String keyWord);
 
-    @Select("SELECT id, marcRecId, callId, title, author, publisher, pubYear, isbn, likeCount, disLikeCount FROM BOOK WHERE id>((#{page}-1)*#{size}) ORDER BY id ASC LIMIT #{size}")
+    @Select("SELECT id, marcRecId, callId, title, author, publisher, pubYear, isbn, likeCount, disLikeCount, callName FROM BOOK WHERE id>((#{page}-1)*#{size}) ORDER BY id ASC LIMIT #{size}")
     List<Book> getBookList(@Param("page") final int page, @Param("size") final int size);
 
-    @Insert("INSERT INTO BOOK(marcRecId, callId, title, author, publisher, pubYear, isbn, likeCount, disLikeCount) VALUES(#{marcRecId}, #{callId}, #{title}, #{author}, #{publisher}, #{pubYear}, #{isbn}, #{likeCount}, #{disLikeCount})")
+    @Insert("INSERT INTO BOOK(marcRecId, callId, title, author, publisher, pubYear, isbn, likeCount, disLikeCount, callName) VALUES(#{marcRecId}, #{callId}, #{title}, #{author}, #{publisher}, #{pubYear}, #{isbn}, #{likeCount}, #{disLikeCount})")
     void addBook(final Book book);
 
     @Update("UPDATE BOOK SET likeCount=likeCount+1 id=#{id}")

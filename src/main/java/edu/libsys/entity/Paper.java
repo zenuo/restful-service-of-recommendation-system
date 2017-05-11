@@ -24,7 +24,7 @@ public class Paper {
     private int likeCount;
     @JsonProperty("disLikeCount")
     private int disLikeCount;
-    @JsonProperty("filed")
+    @JsonProperty("field")
     private String field;
     @JsonProperty("indexTerm")
     private String indexTerm;
