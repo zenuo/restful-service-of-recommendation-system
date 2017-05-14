@@ -13,12 +13,12 @@ public interface BookBookRelationshipMapper {
             @Result(property = "id", column = "id")
     })
 
-    @Select("MATCH p=(book1:B {id:#{bookId}})-[r:`0`]->(book2:Book) RETURN book2.id AS id ORDER BY book2.weight1 DESC LIMIT " + Conf.LIMIT_OF_QUERY + ";")
+    @Select("MATCH p=(book1:B {id:#{bookId}})-[r:`0`]->(book2:B) RETURN book2.id AS id ORDER BY book2.weight1 DESC LIMIT " + Conf.LIMIT_OF_QUERY + ";")
     List<Integer> getRecommendBookListByBookId1(@Param("bookId") final int bookId);
 
-    @Select("MATCH p=(book1:B {id:#{bookId}})-[r:`0`]->(book2:Book) RETURN book2.id AS id ORDER BY book2.weight2 DESC LIMIT " + Conf.LIMIT_OF_QUERY + ";")
+    @Select("MATCH p=(book1:B {id:#{bookId}})-[r:`0`]->(book2:B) RETURN book2.id AS id ORDER BY book2.weight2 DESC LIMIT " + Conf.LIMIT_OF_QUERY + ";")
     List<Integer> getRecommendBookListByBookId2(@Param("bookId") final int bookId);
 
-    @Select("MATCH p=(book1:B {id:#{bookId}})-[r:`0`]->(book2:Book) RETURN book2.id AS id ORDER BY book2.weight3 DESC LIMIT " + Conf.LIMIT_OF_QUERY + ";")
+    @Select("MATCH p=(book1:B {id:#{bookId}})-[r:`0`]->(book2:B) RETURN book2.id AS id ORDER BY book2.weight3 DESC LIMIT " + Conf.LIMIT_OF_QUERY + ";")
     List<Integer> getRecommendBookListByBookId3(@Param("bookId") final int bookId);
 }
