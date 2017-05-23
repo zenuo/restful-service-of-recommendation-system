@@ -10,6 +10,12 @@ public interface PaperMapperForNeo4j {
             @Result(property = "id", column = "id")
     })
 
-    @Update("MATCH (p:Paper {id:#{paperId}}) SET p.weight = p.weight + #{delta}")
-    void addWeight(@Param("paperId") final int paperId, @Param("delta") final int delta);
+    @Update("MATCH (p:P {id:#{paperId}}) SET p.weight1 = p.weight1 + #{delta}")
+    void addWeight1(@Param("paperId") final int paperId, @Param("delta") final int delta);
+
+    @Update("MATCH (p:P {id:#{paperId}}) SET p.weight2 = p.weight2 + #{delta}")
+    void addWeight2(@Param("paperId") final int paperId, @Param("delta") final int delta);
+
+    @Update("MATCH (p:P {id:#{paperId}}) SET p.weight3 = p.weight3 + #{delta}")
+    void addWeight3(@Param("paperId") final int paperId, @Param("delta") final int delta);
 }

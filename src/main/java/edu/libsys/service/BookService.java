@@ -1,5 +1,6 @@
 package edu.libsys.service;
 
+import edu.libsys.conf.Conf;
 import edu.libsys.data.dao.BookDao;
 import edu.libsys.entity.Book;
 
@@ -55,6 +56,10 @@ public class BookService {
     @Path("search")
     @GET
     public List<Book> getBookListBySearchTitle(@QueryParam("keyword") final String keyword) {
+        //如果检索关键词超出长度，返回空
+        if (keyword.length() > Conf.MAX_LENGTH_OF_SEARCH_KEYWORD) {
+            return null;
+        }
         return bookDao.getBookListBySearchTitle(keyword);
     }
 

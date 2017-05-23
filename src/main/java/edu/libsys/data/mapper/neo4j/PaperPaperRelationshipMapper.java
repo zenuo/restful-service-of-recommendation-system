@@ -13,6 +13,12 @@ public interface PaperPaperRelationshipMapper {
             {@Result(property = "id", column = "id")
             })
 
-    @Select("MATCH p=(paper1:Paper {id:#{paperId}})-[r:`1`]->(paper2:Paper) RETURN paper2.id AS id ORDER BY paper2.weight DESC LIMIT " + Conf.LIMIT_OF_QUERY + ";")
-    List<Integer> getRecommendPaperIdListByPaperId(@Param("paperId") final int paperId);
+    @Select("MATCH p=(paper1:P {id:#{paperId}})-[r:`1`]->(paper2:P) RETURN paper2.id AS id ORDER BY paper2.weight1 DESC LIMIT " + Conf.LIMIT_OF_QUERY + ";")
+    List<Integer> getRecommendPaperIdListByPaperId1(@Param("paperId") final int paperId);
+
+    @Select("MATCH p=(paper1:P {id:#{paperId}})-[r:`1`]->(paper2:P) RETURN paper2.id AS id ORDER BY paper2.weight2 DESC LIMIT " + Conf.LIMIT_OF_QUERY + ";")
+    List<Integer> getRecommendPaperIdListByPaperId2(@Param("paperId") final int paperId);
+
+    @Select("MATCH p=(paper1:P {id:#{paperId}})-[r:`1`]->(paper2:P) RETURN paper2.id AS id ORDER BY paper2.weight3 DESC LIMIT " + Conf.LIMIT_OF_QUERY + ";")
+    List<Integer> getRecommendPaperIdListByPaperId3(@Param("paperId") final int paperId);
 }

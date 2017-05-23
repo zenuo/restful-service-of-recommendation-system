@@ -28,11 +28,13 @@ public class Book {
     private int likeCount;
     @JsonProperty("disLikeCount")
     private int disLikeCount;
+    @JsonProperty("callName")
+    private String callName;
 
     public Book() {
     }
 
-    public Book(int id, int marcRecId, String callId, String title, String author, String publisher, String pubYear, String isbn, String imageUrl, int likeCount, int disLikeCount) {
+    public Book(int id, int marcRecId, String callId, String title, String author, String publisher, String pubYear, String isbn, String imageUrl, int likeCount, int disLikeCount, String callName) {
         this.id = id;
         this.marcRecId = marcRecId;
         this.callId = callId;
@@ -44,6 +46,7 @@ public class Book {
         this.imageUrl = imageUrl;
         this.likeCount = likeCount;
         this.disLikeCount = disLikeCount;
+        this.callName = callName;
     }
 
     public int getId() {
@@ -110,6 +113,14 @@ public class Book {
         this.isbn = isbn;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public int getLikeCount() {
         return likeCount;
     }
@@ -126,12 +137,12 @@ public class Book {
         this.disLikeCount = disLikeCount;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getCallName() {
+        return callName;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setCallName(String callName) {
+        this.callName = callName;
     }
 
     @Override
@@ -148,6 +159,7 @@ public class Book {
                 ", imageUrl='" + imageUrl + '\'' +
                 ", likeCount=" + likeCount +
                 ", disLikeCount=" + disLikeCount +
+                ", callName='" + callName + '\'' +
                 '}';
     }
 }

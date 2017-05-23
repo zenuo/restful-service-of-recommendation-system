@@ -13,9 +13,21 @@ public interface PaperBookRelationshipMapper {
             @Result(property = "id", column = "id")
     })
 
-    @Select("MATCH p=(book:Book {id:#{bookId}})-[r:`2`]-(paper:Paper) RETURN paper.id AS id ORDER BY paper.weight DESC LIMIT " + Conf.LIMIT_OF_QUERY + ";")
-    List<Integer> getRecommendPaperIdListByBookId(@Param("bookId") final int bookId);
+    @Select("MATCH p=(book:B {id:#{bookId}})-[r:`2`]-(paper:P) RETURN paper.id AS id ORDER BY paper.weight1 DESC LIMIT " + Conf.LIMIT_OF_QUERY + ";")
+    List<Integer> getRecommendPaperIdListByBookId1(@Param("bookId") final int bookId);
 
-    @Select("MATCH p=(paper:Paper {id:#{paperId}})-[r:`2`]-(book:Book) RETURN book.id AS id ORDER BY book.weight DESC LIMIT " + Conf.LIMIT_OF_QUERY + ";")
-    List<Integer> getRecommendBookIdListByPaperId(@Param("paperId") final int paperId);
+    @Select("MATCH p=(book:B {id:#{bookId}})-[r:`2`]-(paper:P) RETURN paper.id AS id ORDER BY paper.weight2 DESC LIMIT " + Conf.LIMIT_OF_QUERY + ";")
+    List<Integer> getRecommendPaperIdListByBookId2(@Param("bookId") final int bookId);
+
+    @Select("MATCH p=(book:B {id:#{bookId}})-[r:`2`]-(paper:P) RETURN paper.id AS id ORDER BY paper.weight3 DESC LIMIT " + Conf.LIMIT_OF_QUERY + ";")
+    List<Integer> getRecommendPaperIdListByBookId3(@Param("bookId") final int bookId);
+
+    @Select("MATCH p=(paper:P {id:#{paperId}})-[r:`2`]-(book:B) RETURN book.id AS id ORDER BY book.weight1 DESC LIMIT " + Conf.LIMIT_OF_QUERY + ";")
+    List<Integer> getRecommendBookIdListByPaperId1(@Param("paperId") final int paperId);
+
+    @Select("MATCH p=(paper:P {id:#{paperId}})-[r:`2`]-(book:B) RETURN book.id AS id ORDER BY book.weight2 DESC LIMIT " + Conf.LIMIT_OF_QUERY + ";")
+    List<Integer> getRecommendBookIdListByPaperId2(@Param("paperId") final int paperId);
+
+    @Select("MATCH p=(paper:P {id:#{paperId}})-[r:`2`]-(book:B) RETURN book.id AS id ORDER BY book.weight3 DESC LIMIT " + Conf.LIMIT_OF_QUERY + ";")
+    List<Integer> getRecommendBookIdListByPaperId3(@Param("paperId") final int paperId);
 }
