@@ -80,8 +80,6 @@ public class SqlSessionFactory {
     public static DataSource getMariaDBDataSource() {
         BasicDataSource mariadb = new BasicDataSource();
         mariadb.setDriverClassName("org.mariadb.jdbc.Driver");
-        //实验室
-        //mariadb.setUrl("jdbc:mariadb://192.168.1.120:3306/LIBSYS");
         //服务器
         mariadb.setUrl("jdbc:mariadb://localhost:3306/LIBSYS");
         //MariaDB账户密码

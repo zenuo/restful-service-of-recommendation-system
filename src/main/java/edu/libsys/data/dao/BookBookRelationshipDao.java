@@ -13,7 +13,6 @@ public class BookBookRelationshipDao {
         try (SqlSession sqlSession = SqlSessionFactory.getNeo4jSqlSession()) {
             BookBookRelationshipMapper bookBookRelationshipMapper =
                     sqlSession.getMapper(BookBookRelationshipMapper.class);
-
             if (weight == 1) {
                 integerList = bookBookRelationshipMapper.getRecommendBookListByBookId1(bookId);
             } else if (weight == 2) {
@@ -22,7 +21,8 @@ public class BookBookRelationshipDao {
                 integerList = bookBookRelationshipMapper.getRecommendBookListByBookId3(bookId);
             }
         }
-        //System.out.println("Got bookId:" + bookId + ", list size: " + integerList.size());
+        //删除列表中存在的复本
+        integerList.remove(new Integer(bookId));
         //去重后返回
         return ListUtil.deDupIntegerList(integerList);
     }
