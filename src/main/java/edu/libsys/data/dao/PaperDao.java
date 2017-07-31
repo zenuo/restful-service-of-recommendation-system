@@ -134,7 +134,6 @@ public class PaperDao implements Serializable {
      */
     public int updateALike(final int id, final int weight) {
         int status = 0;
-        System.err.println("updateALike" + id);
         try (SqlSession sqlSession = SqlSessionFactory.getNeo4jSqlSession()) {
             PaperMapperForNeo4j paperMapperForNeo4j = sqlSession.getMapper(PaperMapperForNeo4j.class);
             if (weight == 1) {

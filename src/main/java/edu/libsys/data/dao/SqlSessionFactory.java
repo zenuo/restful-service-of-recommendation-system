@@ -83,8 +83,8 @@ public class SqlSessionFactory {
         //服务器
         mariadb.setUrl("jdbc:mariadb://localhost:3306/LIBSYS");
         //MariaDB账户密码
-        mariadb.setUsername("root");
-        mariadb.setPassword("123456a");
+        mariadb.setUsername("spark");
+        mariadb.setPassword("F8g1n4a6");
         return mariadb;
     }
 
@@ -99,7 +99,7 @@ public class SqlSessionFactory {
         neo4j.setUrl("jdbc:neo4j:bolt://localhost:7687");
         //Neo4j账户密码
         neo4j.setUsername("neo4j");
-        neo4j.setPassword("123456a");
+        neo4j.setPassword("H6k4m9v1");
         return neo4j;
     }
 }
